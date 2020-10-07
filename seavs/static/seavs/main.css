@@ -2,7 +2,7 @@
   padding: 2% 15%;
 }
 #navigationbar {
-  background-color: #776d8a;
+  background-color: #2ec1ac;
   color: #f8efd4;
   /* color: #40514e */
 }
@@ -15,7 +15,7 @@
 
 #title {
 
-  background-color: #776d8a;
+  background-color: #2ec1ac;
   color: #f8efd4;
 }
 .heading {
@@ -29,8 +29,8 @@
 }
 
 #features {
-  background-color: #776d8a;
-  color: #776d8a;
+  background-color: #f8efd4;
+  color: #2ec1ac;
 }
 .feature-box {
   text-align: center;
@@ -38,7 +38,7 @@
 }
 
 #about-us {
-  background-color: #776d8a;
+  background-color: #2ec1ac;
   text-align: center;
   color: #f8efd4;
   padding-top: 10px;
@@ -48,7 +48,7 @@
 }
 
 #footer{
-  background-color: #776d8a;
+  background-color: #2ec1ac;
   color: #f8efd4;
   text-align: center;
   padding: 3% 15% 3%;
