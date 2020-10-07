@@ -1,0 +1,55 @@
+.container-fluid {
+  padding: 2% 15%;
+}
+#navigationbar {
+  background-color: #776d8a;
+  color: #f8efd4;
+  /* color: #40514e */
+}
+.navbar-brand {
+  color: #f8efd4;
+}
+.nav-link {
+  color: #f8efd4;
+}
+
+#title {
+
+  background-color: #776d8a;
+  color: #f8efd4;
+}
+.heading {
+  font-size: 4.5rem;
+  padding-top: 2rem;
+  padding-bottom: 5rem;
+  padding-right: 6rem;
+}
+.btn {
+
+}
+
+#features {
+  background-color: #776d8a;
+  color: #776d8a;
+}
+.feature-box {
+  text-align: center;
+  padding: 5%
+}
+
+#about-us {
+  background-color: #776d8a;
+  text-align: center;
+  color: #f8efd4;
+  padding-top: 10px;
+}
+.carousel-item {
+  padding: 3% 15%;
+}
+
+#footer{
+  background-color: #776d8a;
+  color: #f8efd4;
+  text-align: center;
+  padding: 3% 15% 3%;
+}
