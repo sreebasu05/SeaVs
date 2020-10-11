@@ -29,6 +29,7 @@
 
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
+			    <a href="{% url 'export-pdf' %}" class="btn btn-info">Download as PDF</a>
 				<li>Email: <a href="mailto:{{email}}" target="_blank">{{person.emailid}}</a></li>
 				<li>Mobile: {{person.phoneno}}</li>
 				<li>Address: {{person.city}},{{person.state}}
