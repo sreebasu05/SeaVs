@@ -1,0 +1,39 @@
+{% extends 'seavs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+<form method="POST">
+    {% csrf_token %}
+    <div class="row">
+      <div class="col-6" name="firstname">
+        {{ form.firstname|as_crispy_field }}
+      </div>
+      <div class="col-6">
+        {{ form.lastname|as_crispy_field }}
+      </div>
+    </div>
+    {{ form.profession|as_crispy_field }}
+    <div class="row">
+      <div class="col-5">
+        {{ form.city|as_crispy_field }}
+      </div>
+      <div class="col-4">
+        {{ form.state|as_crispy_field }}
+      </div>
+      <div class="col-3">
+        {{ form.pincode|as_crispy_field }}
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-4">
+        {{ form.phoneno|as_crispy_field }}
+      </div>
+      <div class="col-8">
+        {{ form.emailid|as_crispy_field }}
+      </div>
+    </div>
+    <button type="submit" class="btn" style="color: #f8efd4; background-color: #2ec1ac;border-color: #2ec1ac">Next</button>
+</div>
+
+</form>
+{%endblock content %}

@@ -1,0 +1,12 @@
+{% extends 'seavs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+<form method="POST">
+    {% csrf_token %}
+      {{form|crispy}}
+    <button type="submit" class="btn" style="color: #f8efd4; background-color: #2ec1ac;border-color: #2ec1ac">Next</button>
+</div>
+
+</form>
+{%endblock content %}

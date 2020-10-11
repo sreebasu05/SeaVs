@@ -1,10 +1,22 @@
 from django import forms
-from . models import person
- 
+from . models import person, education, experience,whole
+
 class personalform(forms.ModelForm):
      class Meta:
           model = person
-          fields=['firstname','lastname']
-class educationform(forms.Form):
-     school = forms.CharField(max_length=100,required=False)
-     college= forms.CharField(max_length=100)
+          fields='__all__'
+
+class educationform(forms.ModelForm):
+    class Meta:
+        model = education
+        fields='__all__'
+
+class experienceform(forms.ModelForm):
+    class Meta:
+        model = experience
+        fields='__all__'
+
+class whole(forms.ModelForm):
+    class Meta:
+        model = whole
+        fields='__all__'
