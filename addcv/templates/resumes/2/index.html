@@ -21,18 +21,18 @@
 		<div id="headshot" class="quickFade">
 			<img src="headshot.jpg" alt="Alan Smith" />
 		</div>
-
+	{% for person in persons %}
 		<div id="name">
-			<h1 class="quickFade delayTwo">{{firstname}}{{lastname}}</h1>
-			<h2 class="quickFade delayThree">{{profession}}  {{title}}</h2>
+			<h1 class="quickFade delayTwo">{{person.firstname}}{{person.lastname}}</h1>
+			<h2 class="quickFade delayThree">{{person.profession}}, {{person.title}}</h2>
 		</div>
 
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
-				<li>email: <a href="mailto:{{email}}" target="_blank">{{email}}</a></li>
-				<li>mobile: {{phoneno}}</li>
-				<li>address: {{city}},{{state}}
-											{{pincode}}
+				<li>Email: <a href="mailto:{{email}}" target="_blank">{{person.emailid}}</a></li>
+				<li>Mobile: {{person.phoneno}}</li>
+				<li>Address: {{person.city}},{{person.state}}
+											{{person.pincode}}
 				</li>
 			</ul>
 		</div>
@@ -47,37 +47,27 @@
 				</div>
 
 				<div class="sectionContent">
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer dolor metus, interdum at scelerisque in, porta at lacus. Maecenas dapibus luctus cursus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
+					<p>{{person.profile}}</p>
 				</div>
 			</article>
 			<div class="clear"></div>
 		</section>
-
+		{% endfor %}
 
 		<section>
 			<div class="sectionTitle">
 				<h1>Work Experience</h1>
 			</div>
-
+			{% for experience in experiences %}
 			<div class="sectionContent">
 				<article>
-					<h2>Job Title at Company</h2>
-					<p class="subDetails">April 2011 - Present</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
+					<h2>{{experience.post}} at {{experience.company}}</h2>
+					<p class="subDetails">{{experience.startingyear}} - {{experience.endingyear}}</p>
+					<p>{{experience.details}}</p>
 				</article>
 
-				<article>
-					<h2>Job Title at Company</h2>
-					<p class="subDetails">Janruary 2007 - March 2011</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
-				</article>
-
-				<article>
-					<h2>Job Title at Company</h2>
-					<p class="subDetails">October 2004 - December 2006</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim. Vestibulum bibendum mattis dignissim. Proin id sapien quis libero interdum porttitor.</p>
-				</article>
 			</div>
+				{% endfor %}
 			<div class="clear"></div>
 		</section>
 
@@ -107,20 +97,16 @@
 			<div class="sectionTitle">
 				<h1>Education</h1>
 			</div>
-
+			{% for education in educations %}
 			<div class="sectionContent">
 				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
-				</article>
-
-				<article>
-					<h2>College/University</h2>
-					<p class="subDetails">Qualification</p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ultricies massa et erat luctus hendrerit. Curabitur non consequat enim.</p>
+					<h2>{{education.institute}}</h2>
+					<p class="subDetails">{{education.course}}</p>
+					<p class="subDetails">{{education.startingyear}} - {{education.endingyear}}</p>
+					<p>{{education.grade}}</p>
 				</article>
 			</div>
+			{% endfor %}
 			<div class="clear"></div>
 		</section>
 
