@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'seavs.apps.SeavsConfig',
+    'users',
     'crispy_forms',
     'addcv.apps.AddcvConfig',
     'django.contrib.admin',
@@ -123,3 +124,5 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+LOGIN_REDIRECT_URL = 'seavs-homepage'
