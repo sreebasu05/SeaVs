@@ -7,7 +7,8 @@ import tempfile
 from django.http import HttpResponse
 import datetime
 
-
+def createcv(request):
+    return render(request, 'addcv/cv.html')
 def personal(request):
     if request.method == 'POST':
         fm = personalform(request.POST)
@@ -46,11 +47,11 @@ def educational(request):
                 'course':fm.cleaned_data['course']
             }
 
-        return render(request, 'addcv/personal.html', {'form':fm})
+        return render(request, 'addcv/educational.html', {'form':fm})
     else:
         fm = educationform()
         #em = educationform()
-        return render(request,'addcv/personal.html',{'form':fm})
+        return render(request,'addcv/educational.html',{'form':fm})
 
 def experiences(request):
     if request.method == 'POST':
@@ -67,11 +68,11 @@ def experiences(request):
         #    }
 
             fm.save()
-        return render(request,'addcv/personal.html',{'form':fm})
+        return render(request,'addcv/experience.html',{'form':fm})
     else:
         fm = experienceform()
         #em = educationform()
-        return render(request,'addcv/personal.html',{'form':fm})
+        return render(request,'addcv/experience.html',{'form':fm})
 
 def cv(request):
     context = {
