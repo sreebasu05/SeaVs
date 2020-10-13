@@ -1,5 +1,5 @@
 .container-fluid {
-  padding: 2% 15%;
+  padding: 2% 10%;
 }
 #navigationbar {
   background-color: #2ec1ac;
@@ -50,4 +50,22 @@
   color: #f8efd4;
   text-align: center;
   padding: 3% 15% 3%;
+}
+
+.sidetitle{
+  background-color: #2ec1ac;
+  color: #f8efd4;
+
+}
+.subheading{
+  font-size: 3.5rem;
+  padding-top: 15%;
+  padding-bottom: 1%;
+  padding-right: 2%;
+}
+
+.button{
+  background-color: #f8efd4;
+  color: #2ec1ac;
+
 }

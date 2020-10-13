@@ -4,7 +4,7 @@
 <div class="container-fluid sidetitle">
   <div class="row">
     <div class="col-6">
-      <h1 class="subheading">Add your Experiences of Job or Internship</h1>
+      <h1 class="subheading">Add your Educational Details</h1>
       <h6>Want to go back? <a href="#">Click Here!</a></h6>
     </div>
     <div class="col-6">
@@ -12,10 +12,10 @@
           {% csrf_token %}
           <div class="row">
             <div class="col-12" name="firstname">
-              {{ form.company|as_crispy_field }}
+              {{ form.institute|as_crispy_field }}
             </div>
             <div class="col-12">
-              {{ form.post|as_crispy_field}}
+              {{ form.course|as_crispy_field}}
             </div>
           </div>
 
@@ -26,10 +26,8 @@
             <div class="col-6">
               {{ form.endingyear|as_crispy_field }}
             </div>
-          </div>
-          <div class="row">
             <div class="col-12">
-              {{ form.details|as_crispy_field }}
+              {{ form.grade|as_crispy_field }}
             </div>
           </div>
           <button type="submit" class="btn" style="color: #f8efd4; background-color: #2ec1ac;border-color: #2ec1ac">Next</button>
