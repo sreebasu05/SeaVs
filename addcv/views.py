@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import personalform, educationform, experienceform, whole
+from .forms import personalform, educationform, experienceform,resumeform
 from .models import experience, education, person
 from django.template.loader import render_to_string
 from weasyprint import HTML
@@ -15,16 +15,6 @@ def personal(request):
         #em = educationform(request.POST)
         if fm.is_valid():
             fm.save()
-            _ = {
-                'firstname':fm.cleaned_data['firstname'],
-                'lastname':fm.cleaned_data['lastname'],
-                'profession':fm.cleaned_data['profession'],
-                'city':fm.cleaned_data['city'],
-                'state':fm.cleaned_data['state'],
-                'pincode':fm.cleaned_data['pincode'],
-                'phoneno':fm.cleaned_data['phoneno'],
-            }
-
         return render(request,'addcv/personal.html',{'form':fm})
     else:
         fm = personalform()
@@ -37,15 +27,7 @@ def educational(request):
         fm = educationform(request.POST)
         #em = educationform(request.POST)
         if fm.is_valid():
-            print("school")
             fm.save()
-            _ = {
-                'institute':fm.cleaned_data['institute'],
-                'startingyear':fm.cleaned_data['startingyear'],
-                'endingyear':fm.cleaned_data['endingyear'],
-                'grade':fm.cleaned_data['grade'],
-                'course':fm.cleaned_data['course']
-            }
 
         return render(request, 'addcv/educational.html', {'form':fm})
     else:
@@ -56,23 +38,24 @@ def educational(request):
 def experiences(request):
     if request.method == 'POST':
         fm = experienceform(request.POST)
-        #em = educationform(request.POST)
         if fm.is_valid():
-        #    print('form is valid')
-        #    content = {
-        #        'company':fm.cleaned_data['company'],
-        #        'startingyear':fm.cleaned_data['startingyear'],
-        #        'endingyear':fm.cleaned_data['endingyear'],
-        #        'post':fm.cleaned_data['post'],
-        #        'details':fm.cleaned_data['details']
-        #    }
-
             fm.save()
         return render(request,'addcv/experience.html',{'form':fm})
     else:
         fm = experienceform()
         #em = educationform()
         return render(request,'addcv/experience.html',{'form':fm})
+
+def resumes(request):
+    if request.method == 'POST':
+        fm = resumeform(request.POST)
+        if fm.is_valid():
+            fm.save()
+        return render(request,'addcv/resume.html',{'form':fm})
+    else:
+        fm = resumeform()
+        #em = educationform()
+        return render(request,'addcv/resume.html',{'form':fm})
 
 def cv(request):
     context = {

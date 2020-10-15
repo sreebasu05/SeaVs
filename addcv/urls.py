@@ -7,6 +7,7 @@ urlpatterns = [
      path('education/', views.educational,name='ed'),
      path('experiences/', views.experiences,name='ex'),
      path('',views.createcv, name='create-cv-page'),
+     path('resume/', views.resumes,name='resume'),
      path('madecv/',views.cv,name='cv'),
      path('export-pdf', views.export_pdf, name='export-pdf'),
  ]
