@@ -44,10 +44,15 @@ class projects(models.Model):
     def __str__(self):
         return self.topic
 
-class whole(models.Model):
+class resume(models.Model):
+    resumename=models.CharField(max_length=40)
     person=models.ForeignKey(person, on_delete=models.CASCADE)
-    education=models.ForeignKey(education, on_delete=models.CASCADE)
-    experience=models.ForeignKey(experience, on_delete=models.CASCADE)
+    education=models.ManyToManyField(education)
+    experience=models.ManyToManyField(experience)
+    project=models.ManyToManyField(projects)
+
+    def __str__(self):
+        return self.resumename
 
 
 
