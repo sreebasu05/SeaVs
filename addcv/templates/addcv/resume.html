@@ -1,3 +1,5 @@
+<!-- Page which merge all Resume Details -->
+
 {% extends 'seavs/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -11,7 +13,7 @@
       <form method="POST">
         {% csrf_token %}
         <div class="row">
-          <div class="col-6" name="firstname">
+          <div class="col-6">
             {{ form.resumename|as_crispy_field }}
           </div>
           <div class="col-6">
@@ -19,18 +21,25 @@
           </div>
         </div>
         <div class="row">
-          {{ form.education|as_crispy_field }}
+          <div class="col-6">
+            {{ form.education|as_crispy_field }}
+          </div>
         </div>
         <div class="row">
-          {{ form.experience|as_crispy_field }}
+          <div class="col-6">
+            {{ form.experience|as_crispy_field }}
+          </div>
         </div>
         <div class="row">
-          {{ form.project|as_crispy_field }}
+          <div class="col-6">
+            {{ form.project|as_crispy_field }}
+          </div>
         </div>
         <button type="submit" class="btn" style="color: #f8efd4; background-color: #2ec1ac;border-color: #2ec1ac"><a href="http://localhost:8000/addcv/">Next</a></button>
 
+    </form>
+    </div>
 
-    </div></form>
   </div>
 </div>
 {%endblock content %}

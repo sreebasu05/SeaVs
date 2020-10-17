@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class person(models.Model):
     firstname=models.CharField(max_length=20)
@@ -26,6 +27,7 @@ class education(models.Model):
         return self.institute
 
 class experience(models.Model):
+#    user=models.ManyToManyField(User)
     company=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -36,6 +38,7 @@ class experience(models.Model):
         return self.company
 
 class projects(models.Model):
+#    user=models.ManyToManyField(User)
     topic=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()

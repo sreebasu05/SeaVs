@@ -1,3 +1,5 @@
+<!-- HTML of RESUME TEMPLATE 2 -->
+
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -11,18 +13,15 @@
 <link rel="stylesheet" type="text/css" href="{% static 'style.css'%}">
 <link href='http://fonts.googleapis.com/css?family=Rokkitt:400,700|Lato:400,300' rel='stylesheet' type='text/css'>
 
-<!--[if lt IE 9]>
-<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-<![endif]-->
 </head>
 <body id="top">
-<div id="cv" class="instaFade">
+<div id="cv" class="instaFade" contenteditable="true">
 	<div class="mainDetails">
 		<div id="headshot" class="quickFade">
-			<img src="headshot.jpg" alt="Alan Smith" />
+			<img src="" alt="Alan Smith" />
 		</div>
 	{% for person in persons %}
-		<div id="name">
+		<div id="name" >
 			<h1 class="quickFade delayTwo">{{person.firstname}}{{person.lastname}}</h1>
 			<h2 class="quickFade delayThree">{{person.profession}}, {{person.title}}</h2>
 		</div>

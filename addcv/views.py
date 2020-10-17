@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .forms import personalform, educationform, experienceform,resumeform
+from .forms import personalform, educationform, experienceform, projectform, resumeform
 from .models import experience, education, person
 from django.template.loader import render_to_string
 from weasyprint import HTML
@@ -46,6 +46,17 @@ def experiences(request):
         #em = educationform()
         return render(request,'addcv/experience.html',{'form':fm})
 
+def project(request):
+    if request.method == 'POST':
+        fm = projectform(request.POST)
+        if fm.is_valid():
+            fm.save()
+        return render(request,'addcv/project.html',{'form':fm})
+    else:
+        fm = projectform()
+        #em = educationform()
+        return render(request,'addcv/project.html',{'form':fm})
+
 def resumes(request):
     if request.method == 'POST':
         fm = resumeform(request.POST)
@@ -77,7 +88,7 @@ def export_pdf(request):
     response['Content-Transfer-Encoding'] = 'binary'
 
 
-    html_string=render_to_string('addcv/pdf-output.html')
+    html_string=render_to_string('resumes/2/pdf-output.html')
     html=HTML(string=html_string)
 
     result = html.write_pdf()
