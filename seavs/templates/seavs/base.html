@@ -1,3 +1,5 @@
+<!-- Base Template -->
+
 {% load static %} <!-- to add css -->
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
@@ -16,7 +18,7 @@
 
       <div class="container-fluid">
         <nav class="navbar navbar-expand-lg">
-          <a class="navbar-brand" href="">SeaVs</a>
+          <img src="{% static 'seavs/logo.png'%}" alt="" height="35px">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -24,6 +26,9 @@
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
                 <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/addcv">Create CV</a>
               </li>
               {% if user.is_authenticated %}
               <li class="nav-item">
@@ -46,6 +51,7 @@
       </div>
 
     </section>
+
     {% block content %}
     {% endblock content %}
 
@@ -53,7 +59,9 @@
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+<div class="spacer">
 
+</div>
         <footer id="footer">
           <h6>© Copyright 2020</h6>
 

@@ -1,3 +1,5 @@
+<!-- Register Page --> 
+
 {% extends "seavs/base.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -10,12 +12,12 @@
             {{form|crispy}}
         </fieldset>
         <div class="form-group">
-            <button class="btn btn-outline-info" type="submit">sign up</button>
+            <button class="btn btn-outline-info" type="submit">Sign Up</button>
         </div>
     </form>
       <div class="border-top pt-3">
           <small class="text-muted">
-              alraedy have an account ? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+              Already have an account ? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
           </small>
       </div>
     </div>

@@ -1,3 +1,5 @@
+<!-- Page which takes in Personal Details -->
+
 {% extends 'seavs/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
@@ -13,7 +15,7 @@
       <form method="POST">
         {% csrf_token %}
         <div class="row">
-          <div class="col-6" name="firstname">
+          <div class="col-6">
             {{ form.firstname|as_crispy_field }}
           </div>
           <div class="col-6">
@@ -21,7 +23,7 @@
           </div>
         </div>
         <div class="row">
-          <div class="col-7" name="firstname">
+          <div class="col-7">
             {{ form.profession|as_crispy_field }}
           </div>
           <div class="col-5">
@@ -54,9 +56,10 @@
           </div>
         </div>
 
-        <button type="submit" class="btn" style="color: #f8efd4; background-color: #2ec1ac;border-color: #2ec1ac"><a href="http://localhost:8000/addcv/">Next</a></button>
+        <button type="submit" class="btn" >Next</button>
+      </form>
     </div>
-
-    </form>
   </div>
+  </div>
+  
   {%endblock content %}

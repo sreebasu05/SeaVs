@@ -1,16 +1,17 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 class person(models.Model):
-    firstname=models.CharField(max_length=20)
-    lastname=models.CharField(max_length=20)
-    profession=models.CharField(max_length=20)
-    title=models.CharField(max_length=20)
-    city=models.CharField(max_length=30)
-    state=models.CharField(max_length=30)
-    pincode=models.IntegerField()
-    phoneno=models.IntegerField()
-    emailid=models.EmailField()
-    profile=models.TextField(max_length=100)
+    firstname=models.CharField(max_length=20, null=True)
+    lastname=models.CharField(max_length=20, null=True)
+    profession=models.CharField(max_length=20, null=True)
+    title=models.CharField(max_length=20, null=True)
+    city=models.CharField(max_length=30, null=True)
+    state=models.CharField(max_length=30, null=True)
+    pincode=models.IntegerField( null=True)
+    phoneno=models.IntegerField( null=True)
+    emailid=models.EmailField( null=True)
+    profile=models.TextField(max_length=100, null=True)
 
     def __str__(self):
         return self.firstname
@@ -26,6 +27,7 @@ class education(models.Model):
         return self.institute
 
 class experience(models.Model):
+#    user=models.ManyToManyField(User)
     company=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -36,6 +38,7 @@ class experience(models.Model):
         return self.company
 
 class projects(models.Model):
+#    user=models.ManyToManyField(User)
     topic=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()

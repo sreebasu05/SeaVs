@@ -1,12 +1,13 @@
+<!-- Logout Page -->
+
 {% extends "seavs/base.html" %}
 {% block content %}
-  <h2> You have been logged out</h2>
-      <div class="border-top pt-3">
-          <small class="text-muted">
-            <h2>
-               <a class="ml-2" href="{% url 'login' %}">Log In</a>
-               </h2>
-          </small>
-      </div>
-  </div>
+<div class="container-fluid  ">
+  <h1 style="color:#00adb5;">You are Logged Out</h1>
+  <small class="text-muted">
+      Do you want to Sign In ? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
+  </small>
+</div>
+
+
 {% endblock content %}

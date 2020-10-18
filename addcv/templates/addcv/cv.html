@@ -1,15 +1,55 @@
+<!-- Page where user can start adding details and create their CV -->
+
 {% extends 'seavs/base.html' %}
 {% block content %}
 <section>
   <div class="container-fluid sidetitle">
-  <button type="button" class="button btn btn-light btn-lg button"><a href="personal">Add Personal Details
-  </a></button><br>
-  <button type="button" class="button btn btn-light btn-lg button"><a href="education/">Add Education
-  </a></button><br>
-  <button type="button" class="button btn btn-light btn-lg button"><a href="experiences/">Create your CV
-  </a></button><br>
-  <button type="button" class="button btn btn-light btn-lg button"><a href="madecv/">See your CV
-  </a></button><br>
+    <div class="row">
+      <div class=" cd card col-lg-3 w-25" >
+        <div class="card-body">
+          <h5 class="card-title">Personal Details</h5>
+        <!--  <h6 class="card-subtitle mb-2 text-muted">Add or Edit</h6>
+          <p class="card-text">.</p>-->
+          <a href="personal/" class="card-link">Add</a>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
+      <div class="cd card col-lg-3" >
+        <div class="card-body">
+          <h5 class="card-title">Educational Details</h5>
+          <!--  <h6 class="card-subtitle mb-2 text-muted">Add or Edit</h6>
+            <p class="card-text">.</p>-->
+          <a href="education/" class="card-link">Add</a>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
+      <div class="cd card col-lg-3" >
+        <div class="card-body">
+          <h5 class="card-title">Job or Internship Details</h5>
+          <!--  <h6 class="card-subtitle mb-2 text-muted">Add or Edit</h6>
+            <p class="card-text">.</p>-->
+          <a href="experiences/" class="card-link">Add</a>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
+      <div class="cd card col-lg-3" >
+        <div class="card-body">
+          <h5 class="card-title">Project Details</h5>
+          <!--  <h6 class="card-subtitle mb-2 text-muted">Add or Edit</h6>
+            <p class="card-text">.</p>-->
+          <a href="project/" class="card-link">Add</a>
+          <a href="#" class="card-link">Edit</a>
+        </div>
+      </div>
+    </div>
+
+
+<!--    <button type="button" class="button btn btn-light btn-lg button"><a href="education/">Add Education
+      </a></button><br>
+    <button type="button" class="button btn btn-light btn-lg button"><a href="experiences/">Create your CV
+      </a></button><br>
+    <button type="button" class="button btn btn-light btn-lg button"><a href="madecv/">See your CV
+      </a></button><br> -->
   </div>
 </section>
 {% endblock content %}
