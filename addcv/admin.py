@@ -6,9 +6,9 @@ admin.site.register(person)
 admin.site.register(education)
 admin.site.register(experience)
 admin.site.register(projects)
-admin.site.register(resume)
+# admin.site.register(resume)
 
 
-#@admin.register(person,education,experience,projects,resume)
-#class UserAdmin(admin.ModelAdmin):
+# @admin.register(person,education,experience,projects,resume)
+# class UserAdmin(admin.ModelAdmin):
 #    pass

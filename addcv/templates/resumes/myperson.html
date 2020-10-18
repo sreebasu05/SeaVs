@@ -6,9 +6,13 @@
     <title>Document</title>
 </head>
 <body>
-    hello
-    {% for edu in ed %}
-    {{ed.institute}}
-    {%endfor%}
+<h1>hello</h1>
+{% for order in op %}
+{{order.name}}
+{{order.city}}
+{% endfor %}
+{% for order in op1 %}
+{{order.institute}}
+{% endfor %}
 </body>
 </html>

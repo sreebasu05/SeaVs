@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 class person(models.Model):
+    user=models.OneToOneField(User,on_delete=models.CASCADE)
     firstname=models.CharField(max_length=20, null=True)
     lastname=models.CharField(max_length=20, null=True)
     profession=models.CharField(max_length=20, null=True)
@@ -17,6 +18,7 @@ class person(models.Model):
         return self.firstname
 
 class education(models.Model):
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     institute=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -27,7 +29,7 @@ class education(models.Model):
         return self.institute
 
 class experience(models.Model):
-#    user=models.ManyToManyField(User)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     company=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -38,7 +40,7 @@ class experience(models.Model):
         return self.company
 
 class projects(models.Model):
-#    user=models.ManyToManyField(User)
+    user=models.ForeignKey(User,on_delete=models.CASCADE)
     topic=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -47,15 +49,15 @@ class projects(models.Model):
     def __str__(self):
         return self.topic
 
-class resume(models.Model):
-    resumename=models.CharField(max_length=40)
-    person=models.ForeignKey(person, on_delete=models.CASCADE)
-    education=models.ManyToManyField(education)
-    experience=models.ManyToManyField(experience)
-    project=models.ManyToManyField(projects)
+# class resume(models.Model):
+#     resumename=models.CharField(max_length=40)
+#     person=models.ForeignKey(person, on_delete=models.CASCADE)
+#     education=models.ManyToManyField(education)
+#     experience=models.ManyToManyField(experience)
+#     project=models.ManyToManyField(projects)
 
-    def __str__(self):
-        return self.resumename
+#     def __str__(self):
+#         return self.resumename
 
 
 
