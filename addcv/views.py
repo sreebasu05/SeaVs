@@ -14,6 +14,7 @@ def personal(request):
         fm = personalform(request.POST)
         #em = educationform(request.POST)
         if fm.is_valid():
+            fm.added_by = request.user
             fm.save()
         return render(request,'addcv/personal.html',{'form':fm})
     else:
@@ -27,6 +28,7 @@ def educational(request):
         fm = educationform(request.POST)
         #em = educationform(request.POST)
         if fm.is_valid():
+
             fm.save()
 
         return render(request, 'addcv/educational.html', {'form':fm})
