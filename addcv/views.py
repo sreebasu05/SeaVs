@@ -11,11 +11,14 @@ def createcv(request):
     return render(request, 'addcv/cv.html')
 def personal(request):
     if request.method == 'POST':
+
         fm = personalform(request.POST)
+
         #em = educationform(request.POST)
         if fm.is_valid():
-            fm.added_by = request.user
-            fm.save()
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
         return render(request,'addcv/personal.html',{'form':fm})
     else:
         fm = personalform()
