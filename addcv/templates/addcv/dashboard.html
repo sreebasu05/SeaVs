@@ -1,0 +1,16 @@
+{% extends 'seavs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+  {% for content in content %}
+  <div class="card-body" style="background-color:#fff">
+    <h5 class="card-title">{{content.institute}}</h5>
+    <small class="text-muted"> {{content.startingyear}} - {{content.endingyear}} </small>
+    <p class="card-text">Course: {{content.course}}</p>
+    <p class="card-text">Grade: {{content.grade}}</p>
+    <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+  </div>
+  {% endfor %}
+
+</div>
+{%endblock content %}

@@ -22,7 +22,9 @@ class person(models.Model):
         return self.firstname
 
 class education(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
+        null=True, blank=True, on_delete=models.CASCADE)
     institute=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -33,7 +35,9 @@ class education(models.Model):
         return self.institute
 
 class experience(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
+        null=True, blank=True, on_delete=models.CASCADE)
     company=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -44,7 +48,9 @@ class experience(models.Model):
         return self.company
 
 class projects(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
+        null=True, blank=True, on_delete=models.CASCADE)
     topic=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()

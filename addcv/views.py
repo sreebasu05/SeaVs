@@ -31,7 +31,9 @@ def educational(request):
         fm = educationform(request.POST)
         #em = educationform(request.POST)
         if fm.is_valid():
-
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
             fm.save()
 
         return render(request, 'addcv/educational.html', {'form':fm})
@@ -40,10 +42,19 @@ def educational(request):
         #em = educationform()
         return render(request,'addcv/educational.html',{'form':fm})
 
+def edudashboard(request):
+    current_user = request.user
+    print(current_user)
+    content = education.objects.filter(added_by=current_user)
+    return render (request, 'addcv/dashboard.html',{'content':content})
+
 def experiences(request):
     if request.method == 'POST':
         fm = experienceform(request.POST)
         if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
             fm.save()
         return render(request,'addcv/experience.html',{'form':fm})
     else:
@@ -55,6 +66,9 @@ def project(request):
     if request.method == 'POST':
         fm = projectform(request.POST)
         if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
             fm.save()
         return render(request,'addcv/project.html',{'form':fm})
     else:
@@ -62,16 +76,6 @@ def project(request):
         #em = educationform()
         return render(request,'addcv/project.html',{'form':fm})
 
-def resumes(request):
-    if request.method == 'POST':
-        fm = resumeform(request.POST)
-        if fm.is_valid():
-            fm.save()
-        return render(request,'addcv/resume.html',{'form':fm})
-    else:
-        fm = resumeform()
-        #em = educationform()
-        return render(request,'addcv/resume.html',{'form':fm})
 
 # def cv(request):
 #     context = {

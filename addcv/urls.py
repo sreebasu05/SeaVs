@@ -8,8 +8,9 @@ urlpatterns = [
      path('experiences/', views.experiences,name='ex'), #job form
      path('project/', views.project,name='project'),    #project form
      path('',views.createcv, name='create-cv-page'),    #createcv page
-     path('resume/', views.resumes, name='resume'),
+     #path('resume/', views.resumes, name='resume'),
      path('myresume/', views.makecv,name='makecv'),      #resume form
    #   path('madecv/',views.cv,name='cv'),                #cv2
     #  path('export-pdf', views.export_pdf, name='export-pdf'),
+     path('edudashboard/', views.edudashboard, name='edudashboard')
  ]
