@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import personalform, educationform, experienceform, projectform
-from .models import experience, education, person
+from .models import experience, education, person,projects
 # from django.template.loader import render_to_string
 # from weasyprint import HTML
 # import tempfile
@@ -44,9 +44,19 @@ def educational(request):
 
 def edudashboard(request):
     current_user = request.user
-    print(current_user)
     content = education.objects.filter(added_by=current_user)
-    return render (request, 'addcv/dashboard.html',{'content':content})
+    return render (request, 'addcv/edudashboard.html',{'content':content})
+
+def prodashboard(request):
+    current_user = request.user
+    content = projects.objects.filter(added_by=current_user)
+    return render (request, 'addcv/prodashboard.html',{'content':content})
+
+def jobdashboard(request):
+    current_user = request.user
+    print(current_user)
+    content = experience.objects.filter(added_by=current_user)
+    return render (request, 'addcv/jobdashboard.html',{'content':content})
 
 def experiences(request):
     if request.method == 'POST':

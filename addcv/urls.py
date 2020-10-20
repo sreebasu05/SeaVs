@@ -12,5 +12,7 @@ urlpatterns = [
      path('myresume/', views.makecv,name='makecv'),      #resume form
    #   path('madecv/',views.cv,name='cv'),                #cv2
     #  path('export-pdf', views.export_pdf, name='export-pdf'),
-     path('edudashboard/', views.edudashboard, name='edudashboard')
+     path('edudashboard/', views.edudashboard, name='edudashboard'),
+     path('prodashboard/', views.prodashboard, name='prodashboard'),
+     path('jobdashboard/', views.jobdashboard, name='jobdashboard')
  ]
