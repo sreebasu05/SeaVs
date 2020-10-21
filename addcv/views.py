@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from .forms import personalform, educationform, experienceform, projectform
-from .models import experience, education, person
+from .models import experience, education, person,projects
 # from django.template.loader import render_to_string
 # from weasyprint import HTML
 # import tempfile
@@ -11,11 +11,14 @@ def createcv(request):
     return render(request, 'addcv/cv.html')
 def personal(request):
     if request.method == 'POST':
+
         fm = personalform(request.POST)
+
         #em = educationform(request.POST)
         if fm.is_valid():
-            fm.added_by = request.user
-            fm.save()
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
         return render(request,'addcv/personal.html',{'form':fm})
     else:
         fm = personalform()
@@ -28,7 +31,9 @@ def educational(request):
         fm = educationform(request.POST)
         #em = educationform(request.POST)
         if fm.is_valid():
-
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
             fm.save()
 
         return render(request, 'addcv/educational.html', {'form':fm})
@@ -37,10 +42,29 @@ def educational(request):
         #em = educationform()
         return render(request,'addcv/educational.html',{'form':fm})
 
+def edudashboard(request):
+    current_user = request.user
+    content = education.objects.filter(added_by=current_user)
+    return render (request, 'addcv/edudashboard.html',{'content':content})
+
+def prodashboard(request):
+    current_user = request.user
+    content = projects.objects.filter(added_by=current_user)
+    return render (request, 'addcv/prodashboard.html',{'content':content})
+
+def jobdashboard(request):
+    current_user = request.user
+    print(current_user)
+    content = experience.objects.filter(added_by=current_user)
+    return render (request, 'addcv/jobdashboard.html',{'content':content})
+
 def experiences(request):
     if request.method == 'POST':
         fm = experienceform(request.POST)
         if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
             fm.save()
         return render(request,'addcv/experience.html',{'form':fm})
     else:
@@ -52,6 +76,9 @@ def project(request):
     if request.method == 'POST':
         fm = projectform(request.POST)
         if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
             fm.save()
         return render(request,'addcv/project.html',{'form':fm})
     else:
@@ -59,16 +86,6 @@ def project(request):
         #em = educationform()
         return render(request,'addcv/project.html',{'form':fm})
 
-def resumes(request):
-    if request.method == 'POST':
-        fm = resumeform(request.POST)
-        if fm.is_valid():
-            fm.save()
-        return render(request,'addcv/resume.html',{'form':fm})
-    else:
-        fm = resumeform()
-        #em = educationform()
-        return render(request,'addcv/resume.html',{'form':fm})
 
 # def cv(request):
 #     context = {

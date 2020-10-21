@@ -4,7 +4,8 @@ from django.contrib.auth import get_user_model
 from django.conf import settings
 
 class person(models.Model):
-    added_by = models.ForeignKey(get_user_model(),
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
         null=True, blank=True, on_delete=models.CASCADE)
     firstname=models.CharField(max_length=20, null=True)
     lastname=models.CharField(max_length=20, null=True)
@@ -21,7 +22,9 @@ class person(models.Model):
         return self.firstname
 
 class education(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
+        null=True, blank=True, on_delete=models.CASCADE)
     institute=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -32,7 +35,9 @@ class education(models.Model):
         return self.institute
 
 class experience(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
+        null=True, blank=True, on_delete=models.CASCADE)
     company=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
@@ -43,7 +48,9 @@ class experience(models.Model):
         return self.company
 
 class projects(models.Model):
-    user=models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    User = settings.AUTH_USER_MODEL
+    added_by = models.ForeignKey(User,
+        null=True, blank=True, on_delete=models.CASCADE)
     topic=models.CharField(max_length=40)
     startingyear=models.IntegerField()
     endingyear=models.IntegerField()
