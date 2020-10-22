@@ -1,0 +1,16 @@
+{% extends 'seavs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container-fluid">
+  {% for person in persons %}
+  <div class="card-body" style="background-color:#fff">
+    <h5 class="card-title">{{person.firstname}}</h5>
+    <small class="text-muted"> {{person.lastname}} </small>
+    <p class="card-text">Course: </p>
+    <p class="card-text">Grade: </p>
+    <a href="{% url 'persondash' person.id %}" class="btn btn-primary btn-sm">Show details</a>
+  </div>
+  {% endfor %}
+
+</div>
+{%endblock content %}
