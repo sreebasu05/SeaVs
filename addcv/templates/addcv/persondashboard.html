@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid">
+  <h1>Educations: </h1>
   {% for content in contents %}
   <div class="card-body" style="background-color:#fff">
     <h5 class="card-title">{{content.institute}}</h5>
@@ -9,31 +10,33 @@
     <p class="card-text">Course: {{content.course}}</p>
     <p class="card-text">Grade: {{content.grade}}</p>
     {% endfor %}
-    <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+    <a href="{% url 'updateeducation' education.id %}" class="btn btn-primary btn-sm">Update details</a><br>
+    <a href="{% url 'deleteeducation' education.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
+  </div>
+
+  <h1>Experiences: </h1>
+  {% for exp in experiences %}
+  <div class="card-body" style="background-color:#fff">
+    <h5 class="card-title">{{exp.company}}</h5>
+    <small class="text-muted"> {{exp.startingyear}} - {{exp.endingyear}} </small>
+    <p class="card-text">Course: {{exp.post}}</p>
+    <p class="card-text">Grade: {{exp.details}}</p>
+    {% endfor %}
+    <a href="{% url 'updatejob' person.id %}" class="btn btn-primary btn-sm">Update details</a><br>
+    <a href="{% url 'deletejob' person.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
   </div>
 
 
-  <div class="container-fluid">
-    {% for exp in experiences %}
-    <div class="card-body" style="background-color:#fff">
-      <h5 class="card-title">{{exp.company}}</h5>
-      <small class="text-muted"> {{exp.startingyear}} - {{exp.endingyear}} </small>
-      <p class="card-text">Course: {{exp.post}}</p>
-      <p class="card-text">Grade: {{exp.details}}</p>
-      {% endfor %}
-      <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
-    </div>
- 
-  
-    <div class="container-fluid">
-      {% for pro in projects %}
-      <div class="card-body" style="background-color:#fff">
-        <h5 class="card-title">{{pro.topic}}</h5>
-        <p class="text-muted"> {{pro.startingyear}} - {{pro.endingyear}} </p>
-        <p class="card-text">{{pro.details}}</p>
-        {% endfor %}
-        <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
-      </div>
+  <h1>Projects: </h1>
+  {% for pro in projects %}
+  <div class="card-body" style="background-color:#fff">
+    <h5 class="card-title">{{pro.topic}}</h5>
+    <p class="text-muted"> {{pro.startingyear}} - {{pro.endingyear}} </p>
+    <p class="card-text">{{pro.details}}</p>
+    {% endfor %}
+    <a href="{% url 'updateprojects' person.id %}" class="btn btn-primary btn-sm">Update details</a><br>
+    <a href="{% url 'deleteprojects' person.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
+  </div>
 
 
 </div>

@@ -1,0 +1,15 @@
+{% extends 'seavs/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+<div class="container-fluid">
+  <p>Are you sure you want to delete {{person}}</p>
+   <form action="{% url 'delete_order' person.id %}" method="post">
+     {% csrf_token %}
+     <a href="#">Cancel</a>
+     <input type="submit" name="Confirm" value="">
+   </form>
+
+</div>
+
+{%endblock content %}
