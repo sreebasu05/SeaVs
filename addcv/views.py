@@ -4,6 +4,7 @@ from .models import experience, education, person,projects
 # from django.template.loader import render_to_string
 # from weasyprint import HTML
 # import tempfile
+from django.shortcuts import redirect
 from django.http import HttpResponse
 import datetime
 
@@ -26,6 +27,28 @@ def personal(request):
         #em = educationform()
         return render(request,'addcv/personal.html',{'form':fm})
 
+def updatepersonal(request,person_id):
+    per = person.objects.get(id=person_id)
+    fm = personalform(instance=per)
+    if request.method == 'POST':
+
+        fm = personalform(request.POST, instance=per)
+
+        #em = educationform(request.POST)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
+            person_id=instance.id
+            return redirect('/')
+    return render(request,'addcv/personal.html',{'form':fm})
+
+def deletepersonal(request, person_id):
+    per = person.objects.get(id=person_id)
+    if request.method == 'POST':
+        per.delete()
+        return redirect('/')
+    return render(request, 'addcv/delete.html',{'person':per})
 
 def educational(request,person_id):
     if request.method == 'POST':
@@ -43,6 +66,29 @@ def educational(request,person_id):
         fm = educationform()
         #em = educationform()
         return render(request,'addcv/educational.html',{'form':fm})
+
+def updateeducation(request,education_id):
+    per = education.objects.get(id=peducation_id)
+    fm = educationform(instance=per)
+    if request.method == 'POST':
+
+        fm = personalform(request.POST, instance=per)
+
+        #em = educationform(request.POST)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by = request.user
+            instance.save()
+            person_id=instance.id
+            return redirect('/')
+    return render(request,'addcv/educational.html',{'form':fm})
+
+def deleteeducation(request, education_id):
+    per = education.objects.get(id=education_id)
+    if request.method == 'POST':
+        per.delete()
+        return redirect('/')
+    return render(request, 'addcv/delete.html',{'person':per})
 
 def edudashboard(request,test_id):
     current_user = request.user
@@ -105,7 +151,7 @@ def makecv(request,test_id):
     print(user)
     ed = user.education_set.all()
     return render(request, 'addcv/personaledit.html', {'op': ed})
-    
+
 def dashboard(request):
     current_user = request.user
     person1 = person.objects.filter(added_by=current_user)
@@ -115,10 +161,11 @@ def personaldash(request,person_id):
     current_user = request.user
     current_person = person.objects.get(added_by=current_user,id=person_id)
     print(current_person)
-    cont = education.objects.filter(added_by=current_person)     
+    cont = education.objects.filter(added_by=current_person)
     context = experience.objects.filter(added_by=current_person)
     pro = projects.objects.filter(added_by=current_person)
     return render (request, 'addcv/persondashboard.html',{'contents':cont,'experiences':context,'projects':pro})
+
 
 
 # Create your views here.
