@@ -9,9 +9,11 @@
     <small class="text-muted"> {{content.startingyear}} - {{content.endingyear}} </small>
     <p class="card-text">Course: {{content.course}}</p>
     <p class="card-text">Grade: {{content.grade}}</p>
+    <a href="{% url 'updateeducation' person_id content.id %}" class="btn btn-primary btn-sm">Update details</a><br>
+    <a href="{% url 'deleteeducation' person_id content.id %}" class="btn btn-primary btn-sm">Delete</a><br>
+
     {% endfor %}
-    <a href="{% url 'updateeducation' education.id %}" class="btn btn-primary btn-sm">Update details</a><br>
-    <a href="{% url 'deleteeducation' education.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
+    <a href="{% url 'ed' person_id %}" class="btn btn-primary btn-sm">Add details</a><br>
   </div>
 
   <h1>Experiences: </h1>
@@ -21,9 +23,12 @@
     <small class="text-muted"> {{exp.startingyear}} - {{exp.endingyear}} </small>
     <p class="card-text">Course: {{exp.post}}</p>
     <p class="card-text">Grade: {{exp.details}}</p>
+    <a href="{% url 'updateexperience' person_id exp.id %}" class="btn btn-primary btn-sm">Update details</a><br>
+    <a href="{% url 'deleteexperience' person_id exp.id %}" class="btn btn-primary btn-sm">Delete</a><br>
+
     {% endfor %}
-    <a href="{% url 'updatejob' person.id %}" class="btn btn-primary btn-sm">Update details</a><br>
-    <a href="{% url 'deletejob' person.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
+    <br>
+    <a href="{% url 'ex' person_id %}" class="btn btn-primary btn-sm">Add details</a><br>
   </div>
 
 
@@ -33,9 +38,9 @@
     <h5 class="card-title">{{pro.topic}}</h5>
     <p class="text-muted"> {{pro.startingyear}} - {{pro.endingyear}} </p>
     <p class="card-text">{{pro.details}}</p>
+    <a href="{% url 'updateprojects' person_id pro.id %}" class="btn btn-primary btn-sm">Update details</a><br>
     {% endfor %}
-    <a href="{% url 'updateprojects' person.id %}" class="btn btn-primary btn-sm">Update details</a><br>
-    <a href="{% url 'deleteprojects' person.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
+    <a href="{% url 'project' person_id %}" class="btn btn-primary btn-sm">Add details</a><br>
   </div>
 
 

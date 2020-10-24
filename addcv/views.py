@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .forms import personalform, educationform, experienceform, projectform
 from .models import experience, education, person,projects
+from django.contrib import messages
 # from django.template.loader import render_to_string
 # from weasyprint import HTML
 # import tempfile
@@ -20,7 +21,8 @@ def personal(request):
             instance = fm.save(commit=False)
             instance.added_by = request.user
             instance.save()
-            person_id=instance.id
+            person_id = instance.id
+            messages.success(request,'Your personal details has been added')
         return render(request,'addcv/moredetails.html',{'person_id':person_id})
     else:
         fm = personalform()
@@ -47,8 +49,10 @@ def deletepersonal(request, person_id):
     per = person.objects.get(id=person_id)
     if request.method == 'POST':
         per.delete()
-        return redirect('/')
-    return render(request, 'addcv/delete.html',{'person':per})
+        messages.success(request,'The information has been deleted')
+        return redirect('dashboard')
+    return render(request,'addcv/delete.html')
+  
 
 def educational(request,person_id):
     if request.method == 'POST':
@@ -60,35 +64,35 @@ def educational(request,person_id):
             instance = fm.save(commit=False)
             instance.added_by = current_person
             instance.save()
-
         return render(request, 'addcv/educational.html', {'form':fm})
     else:
         fm = educationform()
         #em = educationform()
         return render(request,'addcv/educational.html',{'form':fm})
 
-def updateeducation(request,education_id):
-    per = education.objects.get(id=peducation_id)
-    fm = educationform(instance=per)
+def deleteeducation(request, person_id, edu_id):
+    edu = education.objects.get(id=edu_id)
     if request.method == 'POST':
-
-        fm = personalform(request.POST, instance=per)
-
-        #em = educationform(request.POST)
-        if fm.is_valid():
-            instance = fm.save(commit=False)
-            instance.added_by = request.user
-            instance.save()
-            person_id=instance.id
-            return redirect('/')
-    return render(request,'addcv/educational.html',{'form':fm})
-
-def deleteeducation(request, education_id):
-    per = education.objects.get(id=education_id)
+        edu.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id})
+    return render(request, 'addcv/deleteeducation.html')
+    
+def deleteexperience(request, person_id, exp_id):
+    exp = experience.objects.get(id=exp_id)
     if request.method == 'POST':
-        per.delete()
-        return redirect('/')
-    return render(request, 'addcv/delete.html',{'person':per})
+        exp.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id})
+    return render(request,'addcv/deleteeducation.html')
 
 def edudashboard(request,test_id):
     current_user = request.user
@@ -135,16 +139,43 @@ def project(request,person_id):
     else:
         fm = projectform()
         #em = educationform()
-        return render(request,'addcv/project.html',{'form':fm})
-
-
-# def cv(request):
-#     context = {
-#         'persons': person.objects.all(),
-#         'experiences': experience.objects.all(),
-#         'educations' : education.objects.all()
-#     }
-#     return render(request, 'resumes/2/index.html', context)
+        return render(request, 'addcv/project.html', {'form': fm})
+        
+def upproject(request,person_id,pro_id):
+    pro = projects.objects.get(id=pro_id)
+    fm = projectform(instance=pro)
+    if request.method == 'POST':
+        fm = projectform(request.POST, instance=pro)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            return redirect('/')
+    return render(request, 'addcv/project.html', {'form': fm})
+    
+def updateeducation(request,person_id,edu_id):
+    edu = education.objects.get(id=edu_id)
+    fm = educationform(instance=edu)
+    if request.method == 'POST':
+        fm = educationform(request.POST, instance=edu)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            return redirect('/')
+    return render(request, 'addcv/educational.html', {'form': fm})
+    
+def updateexperience(request,person_id,exp_id):
+    exp = experience.objects.get(id=exp_id)
+    fm = experienceform(instance=exp)
+    if request.method == 'POST':
+        fm = experienceform(request.POST, instance=exp)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            return redirect('/')
+    return render(request,'addcv/experience.html',{'form':fm})
 
 def makecv(request,test_id):
     user = request.user
@@ -164,7 +195,7 @@ def personaldash(request,person_id):
     cont = education.objects.filter(added_by=current_person)
     context = experience.objects.filter(added_by=current_person)
     pro = projects.objects.filter(added_by=current_person)
-    return render (request, 'addcv/persondashboard.html',{'contents':cont,'experiences':context,'projects':pro})
+    return render (request, 'addcv/persondashboard.html',{'contents':cont,'experiences':context,'projects':pro,'person_id':person_id})
 
 
 
