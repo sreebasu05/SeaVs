@@ -1,5 +1,5 @@
 from django import forms
-from . models import person, education, experience, projects
+from . models import person, education, experience, projects,skill
 
 #All the forms used
 class personalform(forms.ModelForm):
@@ -22,6 +22,10 @@ class projectform(forms.ModelForm):
         model = projects
         fields='__all__'
 
+class skillform(forms.ModelForm):
+    class Meta:
+        model = skill
+        fields='__all__'
 # class resumeform(forms.ModelForm):
 
 #     class Meta:

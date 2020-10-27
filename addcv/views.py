@@ -1,6 +1,6 @@
-from django.shortcuts import render
-from .forms import personalform, educationform, experienceform, projectform
-from .models import experience, education, person,projects
+from django.shortcuts import render,redirect
+from .forms import personalform, educationform, experienceform, projectform,skillform
+from .models import experience, education, person,projects,skill
 from django.contrib import messages
 # from django.template.loader import render_to_string
 # from weasyprint import HTML
@@ -13,61 +13,58 @@ def createcv(request):
     return render(request, 'addcv/cv.html')
 def personal(request):
     if request.method == 'POST':
-
         fm = personalform(request.POST)
-
-        #em = educationform(request.POST)
         if fm.is_valid():
             instance = fm.save(commit=False)
             instance.added_by = request.user
             instance.save()
             person_id = instance.id
             messages.success(request,'Your personal details has been added')
-        return render(request,'addcv/moredetails.html',{'person_id':person_id})
+            return render(request,'addcv/moredetails.html',{'person_id':person_id})
     else:
         fm = personalform()
-        #em = educationform()
-        return render(request,'addcv/personal.html',{'form':fm})
+        return render(request, 'addcv/personal.html', {'form': fm})
 
 def updatepersonal(request,person_id):
     per = person.objects.get(id=person_id)
     fm = personalform(instance=per)
     if request.method == 'POST':
-
         fm = personalform(request.POST, instance=per)
-
-        #em = educationform(request.POST)
         if fm.is_valid():
             instance = fm.save(commit=False)
             instance.added_by = request.user
             instance.save()
-            person_id=instance.id
-            return redirect('/')
+            person_id = instance.id
+            current_user=request.user
+            per=person.objects.filter(added_by=current_user)
+            messages.success(request,'The information has been updated')
+        return render(request,'addcv/dashboard.html',{'persons':per})
+           
     return render(request,'addcv/personal.html',{'form':fm})
 
 def deletepersonal(request, person_id):
     per = person.objects.get(id=person_id)
+    current_user=request.user
     if request.method == 'POST':
         per.delete()
+        per=person.objects.filter(added_by=current_user)
         messages.success(request,'The information has been deleted')
-        return redirect('dashboard')
+        return render(request,'addcv/dashboard.html',{'persons':per})
     return render(request,'addcv/delete.html')
   
 
 def educational(request,person_id):
     if request.method == 'POST':
         fm = educationform(request.POST)
-        #em = educationform(request.POST)
         if fm.is_valid():
             current_user=request.user
             current_person = person.objects.get(added_by=current_user,id=person_id)
             instance = fm.save(commit=False)
             instance.added_by = current_person
             instance.save()
-        return render(request, 'addcv/educational.html', {'form':fm})
+        return render(request,'addcv/moredetails.html',{'person_id':person_id})
     else:
         fm = educationform()
-        #em = educationform()
         return render(request,'addcv/educational.html',{'form':fm})
 
 def deleteeducation(request, person_id, edu_id):
@@ -81,36 +78,19 @@ def deleteeducation(request, person_id, edu_id):
         return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
         'projects':pro,'person_id':person_id})
     return render(request, 'addcv/deleteeducation.html')
-    
-def deleteexperience(request, person_id, exp_id):
-    exp = experience.objects.get(id=exp_id)
+
+def updateeducation(request,person_id,edu_id):
+    edu = education.objects.get(id=edu_id)
+    fm = educationform(instance=edu)
     if request.method == 'POST':
-        exp.delete()
-        current_person = person.objects.get(id=person_id)
-        cont = education.objects.filter(added_by=current_person)
-        context = experience.objects.filter(added_by=current_person)
-        pro = projects.objects.filter(added_by=current_person)
-        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
-        'projects':pro,'person_id':person_id})
-    return render(request,'addcv/deleteeducation.html')
+        fm = educationform(request.POST, instance=edu)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            return redirect('/')
+    return render(request, 'addcv/educational.html', {'form': fm})
 
-def edudashboard(request,test_id):
-    current_user = request.user
-    current_person = person.objects.get(added_by=current_user,id=test_id)
-    print(current_person)
-    content = education.objects.filter(added_by=current_person)
-    return render (request, 'addcv/edudashboard.html',{'content':content})
-
-def prodashboard(request):
-    current_user = request.user
-    content = projects.objects.filter(added_by=current_user)
-    return render (request, 'addcv/prodashboard.html',{'content':content})
-
-def jobdashboard(request):
-    current_user = request.user
-    print(current_user)
-    content = experience.objects.filter(added_by=current_user)
-    return render (request, 'addcv/jobdashboard.html',{'content':content})
 
 def experiences(request,person_id):
     if request.method == 'POST':
@@ -124,8 +104,34 @@ def experiences(request,person_id):
         return render(request,'addcv/experience.html',{'form':fm})
     else:
         fm = experienceform()
-        return render(request,'addcv/experience.html',{'form':fm})
+        return render(request, 'addcv/experience.html', {'form': fm})
+        
+    
+def deleteexperience(request, person_id, exp_id):
+    exp = experience.objects.get(id=exp_id)
+    if request.method == 'POST':
+        exp.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request,'addcv/deleteeducation.html')
 
+def updateexperience(request,person_id,exp_id):
+    exp = experience.objects.get(id=exp_id)
+    fm = experienceform(instance=exp)
+    if request.method == 'POST':
+        fm = experienceform(request.POST, instance=exp)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            return redirect('/')
+    return render(request, 'addcv/experience.html', {'form': fm})
+    
 def project(request,person_id):
     if request.method == 'POST':
         fm = projectform(request.POST)
@@ -138,7 +144,6 @@ def project(request,person_id):
         return render(request,'addcv/project.html',{'form':fm})
     else:
         fm = projectform()
-        #em = educationform()
         return render(request, 'addcv/project.html', {'form': fm})
         
 def upproject(request,person_id,pro_id):
@@ -152,37 +157,23 @@ def upproject(request,person_id,pro_id):
             instance.save()
             return redirect('/')
     return render(request, 'addcv/project.html', {'form': fm})
-    
-def updateeducation(request,person_id,edu_id):
-    edu = education.objects.get(id=edu_id)
-    fm = educationform(instance=edu)
-    if request.method == 'POST':
-        fm = educationform(request.POST, instance=edu)
-        if fm.is_valid():
-            instance = fm.save(commit=False)
-            instance.added_by=person.objects.get(id=person_id)
-            instance.save()
-            return redirect('/')
-    return render(request, 'addcv/educational.html', {'form': fm})
-    
-def updateexperience(request,person_id,exp_id):
-    exp = experience.objects.get(id=exp_id)
-    fm = experienceform(instance=exp)
-    if request.method == 'POST':
-        fm = experienceform(request.POST, instance=exp)
-        if fm.is_valid():
-            instance = fm.save(commit=False)
-            instance.added_by=person.objects.get(id=person_id)
-            instance.save()
-            return redirect('/')
-    return render(request,'addcv/experience.html',{'form':fm})
 
-def makecv(request,test_id):
-    user = request.user
-    print(user)
-    ed = user.education_set.all()
-    return render(request, 'addcv/personaledit.html', {'op': ed})
+def skill_person(request,person_id):
+    if request.method == 'POST':
+        fm = skillform(request.POST)
+        if fm.is_valid():
+            current_user=request.user
+            current_person = person.objects.get(added_by=current_user,id=person_id)
+            instance = fm.save(commit=False)
+            instance.added_by = current_person
+            instance.save()
+        return render(request, 'addcv/skill.html', {'form':fm})
+    else:
+        fm = skillform()
+        return render(request,'addcv/skill.html',{'form':fm})
+    
 
+    
 def dashboard(request):
     current_user = request.user
     person1 = person.objects.filter(added_by=current_user)
@@ -195,8 +186,24 @@ def personaldash(request,person_id):
     cont = education.objects.filter(added_by=current_person)
     context = experience.objects.filter(added_by=current_person)
     pro = projects.objects.filter(added_by=current_person)
-    return render (request, 'addcv/persondashboard.html',{'contents':cont,'experiences':context,'projects':pro,'person_id':person_id})
+    ski = skill.objects.filter(added_by=current_person)
+    return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+    'projects':pro,'person_id':person_id,'skills':ski})
 
+    
+def showcv(request, person_id):
+    return render(request, 'addcv/showcv.html', {'person_id': person_id})
+    
+def mycv(request, person_id, my_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user,id=person_id)
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski=skill.objects.filter(added_by=current_person)
+    if my_id == 1:
+        return render(request, 'resumes/1/srt-resume.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person':current_person,'skills':ski})
 
 
 # Create your views here.

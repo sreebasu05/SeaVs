@@ -56,6 +56,16 @@ class projects(models.Model):
     def __str__(self):
         return self.topic
 
+class skill(models.Model):
+    added_by = models.ForeignKey(person,
+        null=True, blank=True, on_delete=models.CASCADE)
+    skill1=models.CharField(max_length=40,blank=True)
+    skill2 = models.CharField(max_length=40, blank=True)
+    skill3=models.CharField(max_length=40)
+
+    def __str__(self):
+        return self.skill1
+
 # class resume(models.Model):
 #     resumename=models.CharField(max_length=40)
 #     person=models.ForeignKey(person, on_delete=models.CASCADE)

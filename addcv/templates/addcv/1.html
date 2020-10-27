@@ -43,14 +43,6 @@
     <a href="{% url 'project' person_id %}" class="btn btn-primary btn-sm">Add details</a><br>
   </div>
 
-  <h1>Skills: </h1>
-  {% for skill in skills %}
-  <div class="card-body" style="background-color:#fff">
-    <h5 class="card-title">{{skill.skill1}}</h5>
-    <p class="text-muted"> {{skill.skill2}} </p>
-    <p class="card-text">{{skill.skill3}}</p>
-  </div>
-  {% endfor %}
 
 </div>
-{% endblock content %}
+{%endblock content %}
