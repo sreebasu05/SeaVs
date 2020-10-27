@@ -10,8 +10,11 @@
     <a href="{% url 'persondash' person.id %}" class="btn btn-primary btn-sm">Show details</a><br>
     <a href="{% url 'updatepersonal' person.id %}" class="btn btn-primary btn-sm">Update details</a><br>
     <a href="{% url 'deletepersonal' person.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
+    <a href="{%url 'showcv' person.id %}">SHOW CV</a>
   </div>
   {% endfor %}
+
+
 
 </div>
 {%endblock content %}
