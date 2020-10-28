@@ -3,17 +3,19 @@
 {% block content %}
 <div class="container-fluid">
   {% for person in persons %}
-  <div class="card-body" style="background-color:#fff">
-    <h5 class="card-title">{{person.firstname}}</h5>
-    <small class="text-muted"> {{person.lastname}} </small>
+  <div class="card mb-2">
+    <div class="card-body" style="background-color:#fff">
+      <h5 class="card-title">{{person.firstname}} {{person.lastname}}</h5>
 
-    <a href="{% url 'persondash' person.id %}" class="btn btn-primary btn-sm">Show details</a><br>
-    <a href="{% url 'updatepersonal' person.id %}" class="btn btn-primary btn-sm">Update details</a><br>
-    <a href="{% url 'deletepersonal' person.id %}" class="btn btn-primary btn-sm">Delete details</a><br>
-    <a href="{%url 'showcv' person.id %}">SHOW CV</a>
+      <br>
+      <a href="{% url 'persondash' person.id %}" class="btn btn-primary btn-sm">Details</a>
+      <a href="{% url 'updatepersonal' person.id %}" class="btn btn-warning btn-sm">Update</a>
+      <a href="{% url 'deletepersonal' person.id %}" class="btn btn-danger btn-sm">Delete</a>
+      <a href="{% url 'showcv' person.id %}" class="btn btn-primary btn-sm">See CV</a>
+    </div>
+
   </div>
   {% endfor %}
-
 
 
 </div>

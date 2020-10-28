@@ -61,7 +61,7 @@ class skill(models.Model):
         null=True, blank=True, on_delete=models.CASCADE)
     skill1=models.CharField(max_length=40,blank=True)
     skill2 = models.CharField(max_length=40, blank=True)
-    skill3=models.CharField(max_length=40)
+    skill3=models.CharField(max_length=40,blank=True)
 
     def __str__(self):
         return self.skill1
