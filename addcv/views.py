@@ -216,6 +216,19 @@ def mycv(request, person_id, my_id):
         return render(request, 'resumes/1/srt-resume.html', {'educations': cont, 'experiences': context,
         'projects':pro,'person':current_person,'skills':ski})
 
+def mycv2(request, person_id, my_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user,id=person_id)
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski=skill.objects.filter(added_by=current_person)
+    if my_id == 1:
+        return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
+        'projects':pro,'person':current_person,'skills':ski})
+
+def mycv4(request):
+    return render(request, 'resumes/4/r1.html')
 ####################################################################- old
 def createcv(request):
     return render(request, 'addcv/cv.html')

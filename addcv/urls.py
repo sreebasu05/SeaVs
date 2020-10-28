@@ -24,7 +24,9 @@ urlpatterns = [
 
      ##################### CV CREATION ########################
       path('mycv/<int:person_id>/<int:my_id>', views.mycv, name='mycv'),
-      
+      path('mycv2/<int:person_id>/<int:my_id>', views.mycv2, name = 'mycv2'),
+
+      path('mycv4', views.mycv4, name = 'mycv4'),
      #############################################-old
 
      path('upproject/<int:person_id>/<int:pro_id>', views.upproject, name='updateprojects'),
