@@ -21,13 +21,17 @@ urlpatterns = [
      path('deleteeducation/<int:person_id>/<int:edu_id>', views.deleteeducation, name='deleteeducation'),
      path('updateexperience/<int:person_id>/<int:exp_id>', views.updateexperience, name='updateexperience'),
      path('deleteexperience/<int:person_id>/<int:exp_id>', views.deleteexperience, name='deleteexperience'),
+     path('updateproject/<int:person_id>/<int:pro_id>', views.updateproject, name='updateproject'),
+     path('deleteproject/<int:person_id>/<int:pro_id>', views.deleteproject, name='deleteproject'),
+     path('updateskill/<int:person_id>/<int:skill_id>', views.updateskill, name='updateskill'),
+     path('deleteskill/<int:person_id>/<int:skill_id>', views.deleteskill, name='deleteskill'),
+
 
      ##################### CV CREATION ########################
       path('mycv/<int:person_id>/<int:my_id>', views.mycv, name='mycv'),
       
      #############################################-old
 
-     path('upproject/<int:person_id>/<int:pro_id>', views.upproject, name='updateprojects'),
 
 
      path('',views.createcv, name='create-cv-page'),    #createcv page

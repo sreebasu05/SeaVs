@@ -192,7 +192,7 @@ def deleteexperience(request, person_id, exp_id):
         'projects':pro,'person_id':person_id,'skills':ski})
     return render(request,'addcv/deleteeducation.html')
 
-def upproject(request,person_id,pro_id):
+def updateproject(request,person_id,pro_id):
     pro = projects.objects.get(id=pro_id)
     fm = projectform(instance=pro)
     if request.method == 'POST':
@@ -204,6 +204,50 @@ def upproject(request,person_id,pro_id):
             return redirect('/')
     return render(request, 'addcv/project.html', {'form': fm})
 
+def deleteproject(request, person_id, pro_id):
+    pro = projects.objects.get(id=pro_id)
+    if request.method == 'POST':
+        pro.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request, 'addcv/deleteeducation.html')
+    
+def updateskill(request, person_id, skill_id):
+    ski = skill.objects.get(id=skill_id)
+    fm = skillform(instance=ski)
+    if request.method == 'POST':
+        fm = skillform(request.POST, instance=ski)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            current_person = person.objects.get(id=person_id)
+            cont = education.objects.filter(added_by=current_person)
+            context = experience.objects.filter(added_by=current_person)
+            pro = projects.objects.filter(added_by=current_person)
+            ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+            'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request, 'addcv/skill.html', {'form': fm})
+    
+def deleteskill(request, person_id, skill_id):
+    ski = skill.objects.get(id=skill_id)
+    if request.method == 'POST':
+        ski.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request, 'addcv/deleteeducation.html')
+
 ##################### CV CREATION ########################
 def mycv(request, person_id, my_id):
     current_user = request.user
@@ -214,7 +258,9 @@ def mycv(request, person_id, my_id):
     ski=skill.objects.filter(added_by=current_person)
     if my_id == 1:
         return render(request, 'resumes/1/srt-resume.html', {'educations': cont, 'experiences': context,
-        'projects':pro,'person':current_person,'skills':ski})
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 2:
+        return render(request,'resumes/1/resume2.html')
 
 ####################################################################- old
 def createcv(request):

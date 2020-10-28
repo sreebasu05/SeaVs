@@ -42,8 +42,8 @@
     <h5 class="card-title">{{pro.topic}}</h5>
     <p class="text-muted"> {{pro.startingyear}} - {{pro.endingyear}} </p>
     <p class="card-text">{{pro.details}}</p>
-    <a href="{% url 'updateprojects' person_id pro.id %}" class="btn btn-warning btn-sm">Update details</a>
-    <a href="#" class="btn btn-danger btn-sm">Delete</a><br><br>
+    <a href="{% url 'updateproject' person_id pro.id %}" class="btn btn-warning btn-sm">Update details</a>
+    <a href="{% url 'deleteproject' person_id pro.id %}" class="btn btn-danger btn-sm">Delete</a><br><br>
     {% endfor %}
     <a href="{% url 'project' person_id %}" class="btn btn-primary btn-sm">Add details</a><br><br>
   </div>
@@ -55,10 +55,11 @@
     <h5 class="card-text">{{skill.skill1}}</h5>
     <p class="card-text"> {{skill.skill2}} </p>
     <p class="card-text">{{skill.skill3}}</p>
-    <a href="#" class="btn btn-warning btn-sm">Update details</a>
-    <a href="#" class="btn btn-danger btn-sm">Delete</a><br><br>
+    <a href="{% url 'updateskill' person_id skill.id %}" class="btn btn-warning btn-sm">Update details</a>
+    <a href="{% url 'deleteskill' person_id skill.id %}" class="btn btn-danger btn-sm">Delete</a><br><br>
     {% endfor %}
   </div>
+  <a href="{% url 'skill' person_id %}" class="btn btn-primary btn-sm">Add details</a><br><br>
 </div>
 
 </div>
