@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid">
+  {%if persons.count%}
   {% for person in persons %}
   <div class="card mb-2">
     <div class="card-body" style="background-color:#fff">
@@ -16,7 +17,9 @@
 
   </div>
   {% endfor %}
-
-
+  {%else%}
+ <h1>You have not created a cv yet</h1>
+<a href="{%url 'personal' %}">Click here to create</a>
+{%endif%}
 </div>
 {%endblock content %}

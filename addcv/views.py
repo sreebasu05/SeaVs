@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from .forms import personalform, educationform, experienceform, projectform,skillform
 from .models import experience, education, person,projects,skill
 from django.contrib import messages
-# from django.template.loader import render_to_string
-# from weasyprint import HTML
-# import tempfile
+from django.template.loader import render_to_string
+from weasyprint import HTML
+import tempfile
 from django.shortcuts import redirect
 from django.http import HttpResponse
 import datetime
@@ -192,7 +192,7 @@ def deleteexperience(request, person_id, exp_id):
         'projects':pro,'person_id':person_id,'skills':ski})
     return render(request,'addcv/deleteeducation.html')
 
-def upproject(request,person_id,pro_id):
+def updateproject(request,person_id,pro_id):
     pro = projects.objects.get(id=pro_id)
     fm = projectform(instance=pro)
     if request.method == 'POST':
@@ -204,6 +204,50 @@ def upproject(request,person_id,pro_id):
             return redirect('/')
     return render(request, 'addcv/project.html', {'form': fm})
 
+def deleteproject(request, person_id, pro_id):
+    pro = projects.objects.get(id=pro_id)
+    if request.method == 'POST':
+        pro.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request, 'addcv/deleteeducation.html')
+
+def updateskill(request, person_id, skill_id):
+    ski = skill.objects.get(id=skill_id)
+    fm = skillform(instance=ski)
+    if request.method == 'POST':
+        fm = skillform(request.POST, instance=ski)
+        if fm.is_valid():
+            instance = fm.save(commit=False)
+            instance.added_by=person.objects.get(id=person_id)
+            instance.save()
+            current_person = person.objects.get(id=person_id)
+            cont = education.objects.filter(added_by=current_person)
+            context = experience.objects.filter(added_by=current_person)
+            pro = projects.objects.filter(added_by=current_person)
+            ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+            'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request, 'addcv/skill.html', {'form': fm})
+
+def deleteskill(request, person_id, skill_id):
+    ski = skill.objects.get(id=skill_id)
+    if request.method == 'POST':
+        ski.delete()
+        current_person = person.objects.get(id=person_id)
+        cont = education.objects.filter(added_by=current_person)
+        context = experience.objects.filter(added_by=current_person)
+        pro = projects.objects.filter(added_by=current_person)
+        ski = skill.objects.filter(added_by=current_person)
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        'projects':pro,'person_id':person_id,'skills':ski})
+    return render(request, 'addcv/deleteeducation.html')
+
 ##################### CV CREATION ########################
 def mycv(request, person_id, my_id):
     current_user = request.user
@@ -213,22 +257,16 @@ def mycv(request, person_id, my_id):
     pro = projects.objects.filter(added_by=current_person)
     ski=skill.objects.filter(added_by=current_person)
     if my_id == 1:
-        return render(request, 'resumes/1/srt-resume.html', {'educations': cont, 'experiences': context,
-        'projects':pro,'person':current_person,'skills':ski})
-
-def mycv2(request, person_id, my_id):
-    current_user = request.user
-    current_person = person.objects.get(added_by=current_user,id=person_id)
-    cont = education.objects.filter(added_by=current_person)
-    context = experience.objects.filter(added_by=current_person)
-    pro = projects.objects.filter(added_by=current_person)
-    ski=skill.objects.filter(added_by=current_person)
-    if my_id == 1:
+        return render(request, 'resumes/1/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 2:
+        return render(request,'resumes/2/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 3:
         return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
-        'projects':pro,'person':current_person,'skills':ski})
+        'projects': pro, 'person': current_person, 'skills': ski})
 
-def mycv4(request):
-    return render(request, 'resumes/4/r1.html')
+
 ####################################################################- old
 def createcv(request):
     return render(request, 'addcv/cv.html')
@@ -240,30 +278,56 @@ def showcv(request, person_id):
 
 
 
+def export_pdf(request, person_id,my_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user,id=person_id)
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski=skill.objects.filter(added_by=current_person)
 
-# Create your views here.
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; attachment; filename=resumes'+\
+        str(datetime.datetime.now())+'.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
 
-# def export_pdf(request):
+    if my_id == 1:
+        html_string=render_to_string('resumes/1/index.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 2:
+        html_string=render_to_string('resumes/2/index.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 3:
+        html_string=render_to_string('resumes/3/index.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 4:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 5:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 6:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 7:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 8:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
 
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'inline; attachment; filename=Addcv'+\
-#         str(datetime.datetime.now())+'.pdf'
-#     response['Content-Transfer-Encoding'] = 'binary'
+    html=HTML(string=html_string)
+
+    result = html.write_pdf()
 
 
-#     html_string=render_to_string('resumes/2/pdf-output.html')
-#     html=HTML(string=html_string)
+    with tempfile.NamedTemporaryFile(delete=True)as output:
+        output.write(result)
+        output.flush()
 
-#     result = html.write_pdf()
+        output=open(output.name,'rb')
 
-
-#     with tempfile.NamedTemporaryFile(delete=True)as output:
-#         output.write(result)
-#         output.flush()
-
-#         output=open(output.name,'rb')
-
-#         response.write(output.read())
+        response.write(output.read())
 
 
-#     return response
+    return response
