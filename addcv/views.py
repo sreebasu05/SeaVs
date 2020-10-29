@@ -260,7 +260,26 @@ def mycv(request, person_id, my_id):
         return render(request, 'resumes/1/srt-resume.html', {'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 2:
-        return render(request,'resumes/1/resume2.html')
+        return render(request,'resumes/2/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 3:
+        return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 4:
+        return render(request, 'resumes/4/r1.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 5:
+        return render(request, 'resumes/5/r2.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 6:
+        return render(request, 'resumes/6/r3.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 7:
+        return render(request, 'resumes/7/r4.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 8:
+        return render(request,'resumes/8/r5.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
 
 ####################################################################- old
 def createcv(request):
