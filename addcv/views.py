@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from .forms import personalform, educationform, experienceform, projectform,skillform
 from .models import experience, education, person,projects,skill
 from django.contrib import messages
-# from django.template.loader import render_to_string
-# from weasyprint import HTML
-# import tempfile
+from django.template.loader import render_to_string
+from weasyprint import HTML
+import tempfile
 from django.shortcuts import redirect
 from django.http import HttpResponse
 import datetime
@@ -281,6 +281,8 @@ def mycv(request, person_id, my_id):
         return render(request,'resumes/8/r5.html', {'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
 
+
+
 ####################################################################- old
 def createcv(request):
     return render(request, 'addcv/cv.html')
@@ -292,30 +294,34 @@ def showcv(request, person_id):
 
 
 
+def export_pdf(request, person_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user,id=person_id)
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski=skill.objects.filter(added_by=current_person)
 
-# Create your views here.
-
-# def export_pdf(request):
-
-#     response = HttpResponse(content_type='application/pdf')
-#     response['Content-Disposition'] = 'inline; attachment; filename=Addcv'+\
-#         str(datetime.datetime.now())+'.pdf'
-#     response['Content-Transfer-Encoding'] = 'binary'
-
-
-#     html_string=render_to_string('resumes/2/pdf-output.html')
-#     html=HTML(string=html_string)
-
-#     result = html.write_pdf()
+    response = HttpResponse(content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; attachment; filename=resumes'+\
+        str(datetime.datetime.now())+'.pdf'
+    response['Content-Transfer-Encoding'] = 'binary'
 
 
-#     with tempfile.NamedTemporaryFile(delete=True)as output:
-#         output.write(result)
-#         output.flush()
+    html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    html=HTML(string=html_string)
 
-#         output=open(output.name,'rb')
-
-#         response.write(output.read())
+    result = html.write_pdf()
 
 
-#     return response
+    with tempfile.NamedTemporaryFile(delete=True)as output:
+        output.write(result)
+        output.flush()
+
+        output=open(output.name,'rb')
+
+        response.write(output.read())
+
+
+    return response

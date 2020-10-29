@@ -2,6 +2,7 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid">
+  {%if persons.count%}
   {% for person in persons %}
   <div class="card mb-2">
     <div class="card-body" style="background-color:#fff">
@@ -12,11 +13,14 @@
       <a href="{% url 'updatepersonal' person.id %}" class="btn btn-warning btn-sm">Update</a>
       <a href="{% url 'deletepersonal' person.id %}" class="btn btn-danger btn-sm">Delete</a>
       <a href="{% url 'showcv' person.id %}" class="btn btn-primary btn-sm">See CV</a>
+      <a href="{% url 'export-pdf' person.id %}" class="btn btn-primary btn-sm">Download CV</a>
     </div>
 
   </div>
   {% endfor %}
-
-
+  {%else%}
+ <h1>You have not created a cv yet</h1>
+<a href="{%url 'personal' %}">Click here to create</a>
+{%endif%}
 </div>
 {%endblock content %}
