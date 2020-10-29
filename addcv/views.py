@@ -18,7 +18,7 @@ def personal(request):
             instance.added_by = request.user
             instance.save()
             person_id = instance.id
-            messages.success(request,'Your personal details has been added')
+            messages.success(request, 'Your personal details has been added!!')
             return render(request,'addcv/moredetails.html',{'person_id':person_id})
     else:
         fm = personalform()
@@ -103,7 +103,7 @@ def updatepersonal(request,person_id):
             person_id = instance.id
             current_user=request.user
             per=person.objects.filter(added_by=current_user)
-            messages.success(request,'The information has been updated')
+            messages.danger(request,'The information has been updated')
         return render(request,'addcv/dashboard.html',{'persons':per})
 
     return render(request,'form/personal.html',{'form':fm})
@@ -116,7 +116,7 @@ def deletepersonal(request, person_id):
         per=person.objects.filter(added_by=current_user)
         messages.success(request,'The information has been deleted')
         return render(request,'addcv/dashboard.html',{'persons':per})
-    return render(request,'addcv/delete.html')
+    return render(request,'addcv/delete.html',{'per':per})
 
 def personaldash(request,person_id):
     current_user = request.user
@@ -249,6 +249,8 @@ def deleteskill(request, person_id, skill_id):
     return render(request, 'addcv/deleteeducation.html')
 
 ##################### CV CREATION ########################
+def templist(request):
+    return render(request, 'resumes/templist.html')
 def mycv(request, person_id, my_id):
     current_user = request.user
     current_person = person.objects.get(added_by=current_user,id=person_id)
