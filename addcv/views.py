@@ -294,7 +294,7 @@ def showcv(request, person_id):
 
 
 
-def export_pdf(request, person_id):
+def export_pdf(request, person_id,my_id):
     current_user = request.user
     current_person = person.objects.get(added_by=current_user,id=person_id)
     cont = education.objects.filter(added_by=current_person)
@@ -307,9 +307,31 @@ def export_pdf(request, person_id):
         str(datetime.datetime.now())+'.pdf'
     response['Content-Transfer-Encoding'] = 'binary'
 
-
-    html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    if my_id == 1:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 2:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 3:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 4:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 5:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 6:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 7:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 8:
+        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    
     html=HTML(string=html_string)
 
     result = html.write_pdf()

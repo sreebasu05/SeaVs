@@ -40,5 +40,5 @@ urlpatterns = [
 
 
    #   path('madecv/',views.cv,name='cv'),                #cv2
-     path('export-pdf/<int:person_id>/', views.export_pdf, name='export-pdf'),
+     path('export-pdf/<int:person_id>/<int:my_id>', views.export_pdf, name='export-pdf'),
  ]

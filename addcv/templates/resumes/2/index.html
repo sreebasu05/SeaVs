@@ -74,19 +74,15 @@
 			<div class="sectionTitle">
 				<h1>Key Skills</h1>
 			</div>
-
+            {%for skill in skills%}
 			<div class="sectionContent">
 				<ul class="keySkills">
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
-					<li>A Key Skill</li>
+					<li>{{skill.skill1}}</li>
+					<li>>{{skill.skill2}}</li>
+					<li>>{{skill.skill3}}</li>
 				</ul>
 			</div>
+			{%endfor%}
 			<div class="clear"></div>
 		</section>
 
