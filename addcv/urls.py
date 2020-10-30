@@ -31,8 +31,9 @@ urlpatterns = [
 
 
      ##################### CV CREATION ########################
+     path('templist', views.templist, name='templist'),
       path('mycv/<int:person_id>/<int:my_id>', views.mycv, name='mycv'),
-      
+
      #############################################-old
 
 

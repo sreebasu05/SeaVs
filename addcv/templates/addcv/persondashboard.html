@@ -8,14 +8,14 @@
   <div class="card-body" style="background-color:#fff">
     {% for content in contents %}
     <h5 class="card-title">{{content.institute}}</h5>
-    <small class="text-muted"> {{content.startingyear}} - {{content.endingyear}} </small>
+    <small class="card-text"> {{content.startingyear}} - {{content.endingyear}} </small>
     <p class="card-text">Course: {{content.course}}</p>
     <p class="card-text">Grade: {{content.grade}}</p>
-    <a href="{% url 'updateeducation' person_id content.id %}" class="btn btn-warning btn-sm">Update details</a>
-    <a href="{% url 'deleteeducation' person_id content.id %}" class="btn btn-danger btn-sm">Delete</a><br><br>
+    <a href="{% url 'updateeducation' person_id content.id %}" class="btn btn-sm dashboardbutton">Update details</a>
+    <a href="{% url 'deleteeducation' person_id content.id %}" class="btn btn-sm dashboardbutton">Delete</a><br><br>
 
     {% endfor %}
-    <a href="{% url 'ed' person_id %}" class="btn btn-primary btn-sm">Add details</a><br><br>
+    <a href="{% url 'ed' person_id %}" class="btn btn-sm dashboardbutton"><strong>Add Details</strong></a><br><br>
   </div>
 </div>
   <h1 style="color:#fff">Experiences: </h1>
@@ -23,15 +23,15 @@
   <div class="card-body" style="background-color:#fff">
     {% for exp in experiences %}
     <h5 class="card-title">{{exp.company}}</h5>
-    <small class="text-muted"> {{exp.startingyear}} - {{exp.endingyear}} </small>
+    <small class="card-text"> {{exp.startingyear}} - {{exp.endingyear}} </small>
     <p class="card-text">Course: {{exp.post}}</p>
-    <p class="card-text">Grade: {{exp.details}}</p>
-    <a href="{% url 'updateexperience' person_id exp.id %}" class="btn btn-warning btn-sm">Update details</a>
-    <a href="{% url 'deleteexperience' person_id exp.id %}" class="btn btn-danger btn-sm">Delete</a><br><br>
+    <p class="card-text">{{exp.details}}</p>
+    <a href="{% url 'updateexperience' person_id exp.id %}" class="btn btn-sm dashboardbutton">Update details</a>
+    <a href="{% url 'deleteexperience' person_id exp.id %}" class="btn btn-sm dashboardbutton">Delete</a><br><br>
 
     {% endfor %}
 
-    <a href="{% url 'ex' person_id %}" class="btn btn-primary btn-sm">Add details</a><br><br>
+    <a href="{% url 'ex' person_id %}" class="btn btn-sm dashboardbutton"><strong>Add Details</strong></a><br><br>
   </div>
 </div>
 
@@ -40,27 +40,28 @@
   <div class="card-body" style="background-color:#fff">
     {% for pro in projects %}
     <h5 class="card-title">{{pro.topic}}</h5>
-    <p class="text-muted"> {{pro.startingyear}} - {{pro.endingyear}} </p>
+    <small class="card-text"> {{pro.startingyear}} - {{pro.endingyear}} </small>
     <p class="card-text">{{pro.details}}</p>
-    <a href="{% url 'updateproject' person_id pro.id %}" class="btn btn-warning btn-sm">Update details</a>
-    <a href="{% url 'deleteproject' person_id pro.id %}" class="btn btn-danger btn-sm">Delete</a><br><br>
+    <a href="{% url 'updateproject' person_id pro.id %}" class="btn btn-sm dashboardbutton">Update details</a>
+    <a href="{% url 'deleteproject' person_id pro.id %}" class="btn btn-sm dashboardbutton">Delete</a><br><br>
     {% endfor %}
-    <a href="{% url 'project' person_id %}" class="btn btn-primary btn-sm">Add details</a><br><br>
+    <a href="{% url 'project' person_id %}" class="btn btn-sm dashboardbutton"><strong>Add Details</strong></a><br><br>
   </div>
 </div>
   <h1 style="color:#fff">Skills: </h1>
 <div class="card mb-2" >
   <div class="card-body" style="background-color:#fff">
     {% for skill in skills %}
-    <h5 class="card-text">{{skill.skill1}}</h5>
+    <p class="card-text">{{skill.skill1}}</p>
     <p class="card-text"> {{skill.skill2}} </p>
     <p class="card-text">{{skill.skill3}}</p>
-    <a href="{% url 'updateskill' person_id skill.id %}" class="btn btn-warning btn-sm">Update details</a>
-    <a href="{% url 'deleteskill' person_id skill.id %}" class="btn btn-danger btn-sm">Delete</a><br><br>
+    <a href="{% url 'updateskill' person_id skill.id %}" class="btn btn-sm dashboardbutton">Update details</a>
+    <a href="{% url 'deleteskill' person_id skill.id %}" class="btn btn-sm dashboardbutton">Delete</a><br><br>
     {% endfor %}
-  </div>
-  <a href="{% url 'skill' person_id %}" class="btn btn-primary btn-sm">Add details</a><br><br>
-</div>
 
+  <a href="{% url 'skill' person_id %}" class="btn btn-sm dashboardbutton"><strong>Add Details</strong></a><br><br>
+    </div>
+</div>
+<a href="{% url 'dashboard' %}" class="btn btn-lg dashboardbutton mt-5"><strong>Done</strong></a><br><br>
 </div>
 {% endblock content %}

@@ -1,6 +1,17 @@
 body {
-  background-color: #00adb5;
+  background-color: #006a71;
   margin-bottom: 20px;
+}
+p{
+  color: #e8e8e8;
+  margin-bottom: 25px;
+}
+h5 {
+  color: #006a71;
+}
+h2{
+  color: #e8e8e8;
+
 }
 
 .spacer {
@@ -8,39 +19,62 @@ body {
 }
 
 .container-fluid {
-  padding: 2% 10%;
-  align-content: center;
+  padding: 1.5% 15%;
+  align-content: left;
 }
 
 #navigationbar {
-  background-color: #00adb5;
-  color: #fff;
+
+  background-color: #006a71;
+  color: #e8e8e8;
   /* color: #40514e */
 }
 
 .navbar-brand {
-  color: #fff;
+  color: #e8e8e8;
 }
 
 .nav-link {
-  color: #fff;
+  color: #e8e8e8;
 }
 
 #title {
-  background-color: #00adb5;
-  color: #fff;
+  background-color: #006a71;
+  color: #e8e8e8;
+  padding: 15rem;
+  align-items: center;
 }
 
 .heading {
-  font-size: 3.5rem;
-  padding-top: 2rem;
-  padding-bottom: 5rem;
-  padding-right: 7rem;
+  font-size: 4rem;
+  padding-top: 4rem;
+  text-align: center;
+}
+
+.titlepara {
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.titlebutton {
+  align-items: center;
+  background-color: #e8e8e8;
+  color: #006a71;
+  opacity: 1;
+}
+.titlebutton:hover {
+  align-items: center;
+  opacity: 0.6;
+}
+
+
+.wrapper {
+  text-align: center;
 }
 
 #features {
-  background-color: #fff;
-  color: #00adb5;
+  background-color: #e8e8e8;
+  color: #006a71;
 }
 
 .feature-box {
@@ -49,9 +83,9 @@ body {
 }
 
 #about-us {
-  background-color: #00adb5;
+  background-color: #006a71;
   text-align: center;
-  color: #fff;
+  color: #e8e8e8;
   padding-top: 10px;
 }
 
@@ -63,43 +97,82 @@ body {
   position: fixed;
   width: 100%;
   bottom: 0px;
-  background-color: #00adb5;
-  color: #fff;
+  background-color: #006a71;
+  color: #e8e8e8;
   text-align: center;
   height: 20px;
   padding: 3% 15% 3%;
 }
 
 .sidetitle {
-  background-color: #00adb5;
-  color: #fff;
+  background-color: #006a71;
+  color: #e8e8e8;
   align-items: center;
 }
 
 .subheading {
-  background-color: #00adb5;
-  color: #fff;
+  background-color: #006a71;
+  color: #e8e8e8;
   font-size: 3.5rem;
-  padding-top: 15%;
+  padding-top: 10rem;
   padding-bottom: 1%;
-  padding-right: 2%;
+  padding-right: 3rem;
 }
 
 .button {
-  background-color: #fff;
-  color: #00adb5;
+  background-color: #e8e8e8;
+  color: #006a71;
 }
 
 .cd {
   margin-left: 1rem;
   margin-right: 1rem;
   margin-bottom: 1rem;
-  background-color: #fff;
-  color: #00adb5;
+  background-color: #e8e8e8;
+  color: #006a71;
   width: 10rem;
 }
 
 .card-body {
-  background-color: #fff;
+  background-color: #e8e8e8;
 
+}
+
+
+.list-group-item {
+  margin-bottom: 1rem;
+  background-color: #e8e8e8;
+  color: #006a71;
+}
+.alert {
+  background-color: #e8e8e8;
+  font-size: 1.5rem;
+
+}
+.dashboardbutton {
+  align-items: center;
+  background-color: #e8e8e8;
+  color: #006a71;
+  opacity: 1;
+  margin-right: 5px;
+}
+
+.dashboardbutton:hover {
+  opacity: 0.5;
+}
+
+.card-text{
+  color: #000;
+  margin-bottom: 3px;
+}
+
+.center-card {
+  background-color: #e8e8e8;
+  color: #006a71;
+  /* text-align: center; */
+}
+
+.templatebutton {
+  background-color: #006a71;
+  color: #e8e8e8;
 }

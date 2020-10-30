@@ -2,9 +2,9 @@ from django.shortcuts import render,redirect
 from .forms import personalform, educationform, experienceform, projectform,skillform
 from .models import experience, education, person,projects,skill,temp
 from django.contrib import messages
-# from django.template.loader import render_to_string
-# from weasyprint import HTML
-# import tempfile
+from django.template.loader import render_to_string
+from weasyprint import HTML
+import tempfile
 from django.shortcuts import redirect
 from django.http import HttpResponse
 import datetime
@@ -103,7 +103,7 @@ def updatepersonal(request,person_id):
             person_id = instance.id
             current_user=request.user
             per=person.objects.filter(added_by=current_user)
-            messages.success(request,'The information has been updated')
+            messages.danger(request,'The information has been updated')
         return render(request,'addcv/dashboard.html',{'persons':per})
 
     return render(request,'form/personal.html',{'form':fm})
@@ -116,7 +116,7 @@ def deletepersonal(request, person_id):
         per=person.objects.filter(added_by=current_user)
         messages.success(request,'The information has been deleted')
         return render(request,'addcv/dashboard.html',{'persons':per})
-    return render(request,'addcv/delete.html')
+    return render(request,'addcv/delete.html',{'per':per})
 
 def personaldash(request,person_id):
     current_user = request.user
@@ -287,6 +287,9 @@ def deleteskill(request, person_id, skill_id):
 def createcv(request):
     return render(request, 'addcv/cv.html')
 
+def templist(request):
+    return render(request,'resumes/templist.html')
+
 
 
 def showcv(request, person_id):
@@ -295,6 +298,9 @@ def showcv(request, person_id):
 def mycv(request, person_id, my_id):
     current_user = request.user
     current_person = person.objects.get(added_by=current_user, id=person_id)
+    temp_obj = temp.objects.filter(added_by=current_person)
+    if temp_obj.count:
+        temp_obj.delete()
     temp_obj=temp.objects.create(added_by=current_person,temp_id=my_id)
     
     return render(request, 'addcv/moredetails.html', {'person_id': person_id})
@@ -309,20 +315,16 @@ def showmycv(request, person_id):
     pro = projects.objects.filter(added_by=current_person)
     ski = skill.objects.filter(added_by=current_person)
     if my_id == 1:
-        return render(request, 'resumes/1/srt-resume.html', {'educations': cont, 'experiences': context,
+        return render(request, 'resumes/1/index.html', {'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 2:
-        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
-        'projects': pro, 'person': current_person, 'skills': ski})
+        return render(request, 'resumes/2/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})      
     if my_id == 3:
         return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
 
 def changetemp(request, person_id):
-    current_user = request.user
-    current_person = person.objects.get(added_by=current_user, id=person_id)
-    temp_obj = temp.objects.get(added_by=current_person)
-    temp_obj.delete()
     return render(request, 'addcv/showcv.html', {'person_id': person_id})
     
   

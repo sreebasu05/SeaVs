@@ -1,10 +1,13 @@
 {% extends 'seavs/base.html' %}
 {% load crispy_forms_tags %}
 {% block content %}
-<form action="" method="post">
-    {% csrf_token %}
-    <h2>Are you sure you want to delete this </h2>
-    <input type='submit' value="YES"></input>
-    <button onclick="window.history.back();" type='button'>Cancel</button>
-</form> 
+<div class="container-fluid">
+  <form action="" method="post">
+      {% csrf_token %}
+      <h2>Are you sure you want to delete the resume of {{per.firstname}} {{per.lastname}}? </h2>
+      <input class="btn btn-lg dashboardbutton"type='submit' value="Yes"></input>
+      <button class="btn btn-lg dashboardbutton"onclick="window.history.back();" type='button'>Cancel</button>
+  </form>
+</div>
+
 {% endblock content %}

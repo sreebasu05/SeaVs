@@ -234,7 +234,7 @@
 	<meta name="description" content="" />
 
 	<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" />
-	<link rel="stylesheet" type="text/css" href="resume.css" media="all" />
+	<link rel="stylesheet" type="text/css" href="" media="all" />
 
 </head>
 
@@ -271,7 +271,7 @@
 
 						<div class="yui-gf">
 							<div class="yui-u first">
-								<h2>Profile</h2>
+								<h2><strong>Profile</strong></h2>
 							</div>
 							<div class="yui-u">
 								<p class="enlarge">
@@ -280,10 +280,10 @@
 							</div>
 						</div>
 						<!--// .yui-gf -->
-
+						{% if skills.count %}
 						<div class="yui-gf">
 							<div class="yui-u first">
-								<h2>Skills</h2>
+								<h2><strong>Skills</strong></h2>
 							</div>
 							{% for skill in skills%}
 							<div class="yui-u">
@@ -303,19 +303,19 @@
 							{%endfor%}
 						</div>
 						<!--// .yui-gf -->
-
-
+						{% endif %}
+						{% if experiences.count %}
 						<div class="yui-gf">
 
 							<div class="yui-u first">
-								<h2>Experience</h2>
+								<h2><strong>Experience</strong></h2>
 							</div>
 							<!--// .yui-u -->
 
 							<div class="yui-u">
 							{%for experience in experiences%}
 								<div class="job">
-									<h2>{{experience.company}}</h2>
+									<h2><strong>{{experience.company}}</strong></h2>
 									<h3>{{experience.post}}</h3>
 									<h4>{{experience.startingyear}}-{{experience.endingyear}}</h4>
 									<p>{{experience.details}}</p>
@@ -325,8 +325,8 @@
 							<!--// .yui-u -->
 						</div>
 						<!--// .yui-gf -->
-
-
+						{% endif %}
+						{% if educations.count %}
 						<div class="yui-gf ">
 							<div class="yui-u first">
 								<h2>Education</h2>
@@ -340,8 +340,8 @@
 							{%endfor%}
 						</div>
 						<!--// .yui-gf -->
-
-
+						{%endif%}
+						{% if projects.count %}
 						<div class="yui-gf last">
 							<div class="yui-u first">
 								<h2>Project</h2>
@@ -354,7 +354,7 @@
 							</div>
 							{%endfor%}
 						</div>
-
+						{%endif%}
 					</div>
 					<!--// .yui-b -->
 				</div>

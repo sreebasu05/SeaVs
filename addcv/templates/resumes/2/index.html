@@ -18,7 +18,7 @@
 <div id="cv" class="instaFade" contenteditable="true">
 	<div class="mainDetails">
 		<div id="headshot" class="quickFade">
-			<img src="" alt="Alan Smith" />
+			<!-- <img src="" alt="Alan Smith" /> -->
 		</div>
 		<div id="name" >
 			<h1 class="quickFade delayTwo">{{person.firstname}}{{person.lastname}}</h1>
@@ -27,7 +27,6 @@
 
 		<div id="contactDetails" class="quickFade delayFour">
 			<ul>
-			    <a href="{% url 'export-pdf' %}" class="btn btn-info">Download as PDF</a>
 				<li>Email: <a href="mailto:{{email}}" target="_blank">{{person.emailid}}</a></li>
 				<li>Mobile: {{person.phoneno}}</li>
 				<li>Address: {{person.city}},{{person.state}}
@@ -98,6 +97,21 @@
 					<p class="subDetails">{{education.course}}</p>
 					<p class="subDetails">{{education.startingyear}} - {{education.endingyear}}</p>
 					<p>{{education.grade}}</p>
+				</article>
+			</div>
+			{% endfor %}
+			<div class="clear"></div>
+		</section>
+		<section>
+			<div class="sectionTitle">
+				<h1>Project</h1>
+			</div>
+			{% for project in projects %}
+			<div class="sectionContent">
+				<article>
+					<h2>{{project.topic}}</h2>
+					<p class="subDetails">{{project.startingyear}} - {{project.endingyear}}</p>
+					<p>{{project.details}}</p>
 				</article>
 			</div>
 			{% endfor %}

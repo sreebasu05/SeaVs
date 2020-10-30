@@ -4,30 +4,36 @@
 {% extends 'seavs/base.html' %}
 {% block content %}
 <section id="title">
-  <div class="row container-fluid">
-    <div class="col-lg-7">
-      {%if user.is_authenticated%}
-        <h1 class="heading">Welcome {{user.username}} to Sea-Vs</h1>
-      {%else%}
-        <h1 class="heading">Welcome to Sea-Vs</h1>
-      {%endif%}
-      <!--    <a href="/signup"><i class="fas fa-sign-in-alt"></i> Sign Up</a>
-          <button type="button" class="btn btn-outline-dark btn-lg button"><a href="/login"><i class="fas fa-sign-in-alt"></i> Log In</a></button>-->
 
-    </div>
-  </div>
+
+<div class="container-fluid">
+  <h1 class="heading">Welcome to Sea-Vs</h1>
+  <p class="titlepara">
+    Hello {%if user.is_authenticated%}
+    {{user.username}},
+    {%else%}
+    mate,
+    {%endif%}
+    use Sea-Vs and make yourself an awesome resume for your next interview.
+
+  </p>
+  <p class="wrapper">
+    <a href="{% url 'personal' %}" class="btn btn-lg titlebutton "><strong>Create CV</strong></a>
+  </p>
+
+</div>
 </section>
 
 <section id="features">
 
   <div class="row container-fluid">
 
-      <div class="feature-box col-lg-4">
-        <i class="icon fas fa-file fa-4x"></i>
-        <h3><strong>Create your CV.</strong></h3>
-        <p>Create better CVs and resumes quickly.</p>
+    <div class="feature-box col-lg-4">
+      <i class="icon fas fa-file fa-4x"></i>
+      <h3><strong>Create your CV.</strong></h3>
+      <p>Create better CVs and resumes quickly.</p>
 
-      </div>
+    </div>
 
     <div class="feature-box col-lg-4">
       <i class="icon fas fa-layer-group fa-4x"></i>
@@ -44,38 +50,7 @@
 
   </div>
 
-  <section id="about-us">
-    <div id="carouselExampleIndicators" class="carousel slide container-fluid" data-ride="carousel" data-pause="hover" data-interval="2000">
-      <ol class="carousel-indicators">
-        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <h1>Sreemoyee Basu</h1>
-        </div>
-        <div class="carousel-item">
-          <h1>Eshwar Srinivasan</h1>
-        </div>
-        <div class="carousel-item">
-          <h1>Arushi Agarwal</h1>
-        </div>
-        <div class="carousel-item">
-          <h1>Shreyas Kolhatkar</h1>
-        </div>
-      </div>
-      <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-  </section>
+
 
 
   {% endblock content %}

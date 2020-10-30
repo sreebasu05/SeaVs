@@ -70,8 +70,7 @@ class temp(models.Model):
         null=True, blank=True, on_delete=models.CASCADE)
     temp_id = models.IntegerField(blank=True, null=True)
     
-    def __str__(self):
-        return self.temp_id
+
 # class resume(models.Model):
 #     resumename=models.CharField(max_length=40)
 #     person=models.ForeignKey(person, on_delete=models.CASCADE)

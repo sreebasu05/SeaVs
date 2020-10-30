@@ -2,9 +2,11 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container-fluid">
+
   {%if persons.count%}
+  <p>Welcome to your DashBoard {{user.username}}. Here all your CVs you created are stored and can be deleted, updated and everything you wish to.</p>
   {% for person in persons %}
-  <div class="card mb-2">
+  <div class="card mb-3 mt-3">
     <div class="card-body" style="background-color:#fff">
       <h5 class="card-title">{{person.firstname}} {{person.lastname}}</h5>
 
@@ -24,4 +26,5 @@
 <a href="{%url 'personal' %}">Click here to create</a>
 {%endif%}
 </div>
+
 {%endblock content %}
