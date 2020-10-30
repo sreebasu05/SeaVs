@@ -19,7 +19,7 @@ def personal(request):
             instance.save()
             person_id = instance.id
             messages.success(request,'Your personal details has been added')
-            return render(request,'addcv/showcv.html',{'person_id':person_id})
+            return render(request,'resumes/templist.html',{'person_id':person_id})
     else:
         fm = personalform()
         return render(request, 'form/personal.html', {'form': fm})
@@ -82,7 +82,7 @@ def skill_person(request,person_id):
         return render(request,'addcv/moredetails.html',{'person_id':person_id})
     else:
         fm = skillform()
-        return render(request,'addcv/skill.html',{'form':fm})
+        return render(request,'form/skill.html',{'form':fm})
 
 ##################### PERSON DASHBOARD ########################
 
@@ -233,7 +233,7 @@ def updateskill(request, person_id, skill_id):
             ski = skill.objects.filter(added_by=current_person)
         return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
             'projects':pro,'person_id':person_id,'skills':ski})
-    return render(request, 'addcv/skill.html', {'form': fm})
+    return render(request, 'form/skill.html', {'form': fm})
 
 def deleteskill(request, person_id, skill_id):
     ski = skill.objects.get(id=skill_id)
@@ -311,7 +311,7 @@ def showmycv(request, person_id):
         'projects': pro, 'person': current_person, 'skills': ski})
 
 def changetemp(request, person_id):
-    return render(request, 'addcv/showcv.html', {'person_id': person_id})
+    return render(request, 'resumes/templist.html', {'person_id': person_id})
 
 
 
@@ -325,13 +325,6 @@ def export_pdf(request, person_id):
     pro = projects.objects.filter(added_by=current_person)
     ski=skill.objects.filter(added_by=current_person)
 
-def export_pdf(request, person_id,my_id):
-    current_user = request.user
-    current_person = person.objects.get(added_by=current_user,id=person_id)
-    cont = education.objects.filter(added_by=current_person)
-    context = experience.objects.filter(added_by=current_person)
-    pro = projects.objects.filter(added_by=current_person)
-    ski=skill.objects.filter(added_by=current_person)
 
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'inline; attachment; filename=resumes'+\
