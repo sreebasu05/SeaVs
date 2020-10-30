@@ -5,13 +5,13 @@
 {% block content %}
 <div class="container-fluid sidetitle">
   <div class="row">
-    <div class="col-6">
+    <div class="col-6 border-right">
       <h1 class="subheading">Add your Educational Details</h1>
     </div>
     <div class="col-6">
       <form method="POST" >
           {% csrf_token %}
-          <div class="row">
+          <div class="row" style="padding-top:3rem;">
             <div class="col-12" name="firstname">
               {{ form.institute|as_crispy_field }}
             </div>

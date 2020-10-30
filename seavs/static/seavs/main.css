@@ -38,6 +38,10 @@ h2{
   color: #e8e8e8;
 }
 
+.nav-link:hover {
+  opacity: 0.5;
+}
+
 #title {
   background-color: #006a71;
   color: #e8e8e8;
@@ -73,10 +77,15 @@ h2{
 }
 
 #features {
+
+  padding-top: 20px;
+
   background-color: #e8e8e8;
   color: #006a71;
 }
-
+.featurette-heading, .lead {
+  color: #006a71;
+}
 .feature-box {
   text-align: center;
   padding: 5%

@@ -2,12 +2,18 @@
 
 {% extends "seavs/base.html" %}
 {% block content %}
-<div class="container-fluid  ">
-  <h1 style="color:#00adb5;">You are Logged Out</h1>
-  <small class="text-muted">
-      Do you want to Sign In ? <a class="ml-2" href="{% url 'login' %}">Sign In</a>
-  </small>
-</div>
+<section id="title">
+  <div class="container-fluid  ">
+    <h1 >You are successfully logged out!</h1>
+      <h1>See you next time!</h1>
+    <small>Wanna Log In again?</small>
+<small>
+      <a href="{% url 'login' %}" class="ml-2" style="color: #e8e8e8;">Log In</a>
+</small>
+
+  </div>
+</section>
+
 
 
 {% endblock content %}

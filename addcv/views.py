@@ -19,7 +19,7 @@ def personal(request):
             instance.save()
             person_id = instance.id
             messages.success(request,'Your personal details has been added')
-            return render(request,'addcv/showcv.html',{'person_id':person_id})
+            return render(request,'resumes/templist.html',{'person_id':person_id})
     else:
         fm = personalform()
         return render(request, 'form/personal.html', {'form': fm})
@@ -82,7 +82,7 @@ def skill_person(request,person_id):
         return render(request,'addcv/moredetails.html',{'person_id':person_id})
     else:
         fm = skillform()
-        return render(request,'addcv/skill.html',{'form':fm})
+        return render(request,'form/skill.html',{'form':fm})
 
 ##################### PERSON DASHBOARD ########################
 
@@ -216,7 +216,7 @@ def deleteproject(request, person_id, pro_id):
         return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
         'projects':pro,'person_id':person_id,'skills':ski})
     return render(request, 'addcv/deleteeducation.html')
-    
+
 def updateskill(request, person_id, skill_id):
     ski = skill.objects.get(id=skill_id)
     fm = skillform(instance=ski)
@@ -233,8 +233,8 @@ def updateskill(request, person_id, skill_id):
             ski = skill.objects.filter(added_by=current_person)
         return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
             'projects':pro,'person_id':person_id,'skills':ski})
-    return render(request, 'addcv/skill.html', {'form': fm})
-    
+    return render(request, 'form/skill.html', {'form': fm})
+
 def deleteskill(request, person_id, skill_id):
     ski = skill.objects.get(id=skill_id)
     if request.method == 'POST':
@@ -249,38 +249,24 @@ def deleteskill(request, person_id, skill_id):
     return render(request, 'addcv/deleteeducation.html')
 
 ##################### CV CREATION ########################
-# def mycv(request, person_id, my_id):
-#     current_user = request.user
-#     current_person = person.objects.get(added_by=current_user,id=person_id)
-#     cont = education.objects.filter(added_by=current_person)
-#     context = experience.objects.filter(added_by=current_person)
-#     pro = projects.objects.filter(added_by=current_person)
-#     ski=skill.objects.filter(added_by=current_person)
-#     if my_id == 1:
-#         return render(request, 'resumes/1/srt-resume.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 2:
-#         return render(request,'resumes/2/index.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 3:
-#         return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 4:
-#         return render(request, 'resumes/4/r1.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 5:
-#         return render(request, 'resumes/5/r2.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 6:
-#         return render(request, 'resumes/6/r3.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 7:
-#         return render(request, 'resumes/7/r4.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-#     if my_id == 8:
-#         return render(request,'resumes/8/r5.html', {'educations': cont, 'experiences': context,
-#         'projects': pro, 'person': current_person, 'skills': ski})
-
+def templist(request):
+    return render(request, 'resumes/templist.html')
+def mycv(request, person_id, my_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user,id=person_id)
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski=skill.objects.filter(added_by=current_person)
+    if my_id == 1:
+        return render(request, 'resumes/1/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 2:
+        return render(request,'resumes/2/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 3:
+        return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
 
 
 ####################################################################- old
@@ -302,9 +288,9 @@ def mycv(request, person_id, my_id):
     if temp_obj.count:
         temp_obj.delete()
     temp_obj=temp.objects.create(added_by=current_person,temp_id=my_id)
-    
+
     return render(request, 'addcv/moredetails.html', {'person_id': person_id})
-    
+
 def showmycv(request, person_id):
     current_user = request.user
     current_person = person.objects.get(added_by=current_user, id=person_id)
@@ -319,15 +305,15 @@ def showmycv(request, person_id):
         'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 2:
         return render(request, 'resumes/2/index.html', {'educations': cont, 'experiences': context,
-        'projects': pro, 'person': current_person, 'skills': ski})      
+        'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 3:
         return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
 
 def changetemp(request, person_id):
-    return render(request, 'addcv/showcv.html', {'person_id': person_id})
-    
-  
+    return render(request, 'resumes/templist.html', {'person_id': person_id})
+
+
 
 def export_pdf(request, person_id):
     current_user = request.user
@@ -339,21 +325,37 @@ def export_pdf(request, person_id):
     pro = projects.objects.filter(added_by=current_person)
     ski=skill.objects.filter(added_by=current_person)
 
+
     response = HttpResponse(content_type='application/pdf')
     response['Content-Disposition'] = 'inline; attachment; filename=resumes'+\
         str(datetime.datetime.now())+'.pdf'
     response['Content-Transfer-Encoding'] = 'binary'
 
     if my_id == 1:
-        html_string=render_to_string('resumes/1/srt-resume.html',{'educations': cont, 'experiences': context,
+        html_string=render_to_string('resumes/1/index.html',{'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 2:
-        html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+        html_string=render_to_string('resumes/2/index.html',{'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 3:
         html_string=render_to_string('resumes/3/index.html',{'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
-    
+    # if my_id == 4:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 5:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 6:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 7:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+    # if my_id == 8:
+    #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
+    #     'projects': pro, 'person': current_person, 'skills': ski})
+
     html=HTML(string=html_string)
 
     result = html.write_pdf()

@@ -4,26 +4,30 @@
 <div class="container-fluid">
 
   {%if persons.count%}
-  <p>Welcome to your DashBoard {{user.username}}. Here all your CVs you created are stored and can be deleted, updated and everything you wish to.</p>
+  <p class="border-bottom mt-4 mb-4">Welcome to your DashBoard {{user.username}}. Here all your CVs you created are stored and can be deleted, updated and everything you wish to.</p>
   {% for person in persons %}
   <div class="card mb-3 mt-3">
     <div class="card-body" style="background-color:#fff">
       <h5 class="card-title">{{person.firstname}} {{person.lastname}}</h5>
 
       <br>
-      <a href="{% url 'persondash' person.id %}" class="btn btn-primary btn-sm">Details</a>
-      <a href="{% url 'updatepersonal' person.id %}" class="btn btn-warning btn-sm">Update</a>
-      <a href="{% url 'deletepersonal' person.id %}" class="btn btn-danger btn-sm">Delete</a>
-      <a href="{% url 'showmycv' person.id %}" class="btn btn-primary btn-sm">See CV</a>
-      <a href="{% url 'changetemp' person.id %}" class="btn btn-primary btn-sm">Change template</a>
-      <a href="{% url 'export-pdf' person.id %}" class="btn btn-primary btn-sm">Download CV</a>
+      <a href="{% url 'persondash' person.id %}" class="btn btn-sm dashboardbutton">Details</a>
+      <a href="{% url 'updatepersonal' person.id %}" class="btn btn-sm dashboardbutton">Update</a>
+      <a href="{% url 'deletepersonal' person.id %}" class="btn btn-sm dashboardbutton">Delete</a>
+      <a href="{% url 'showmycv' person.id %}" class="btn btn-sm dashboardbutton">See CV</a>
+      <a href="{% url 'changetemp' person.id %}" class="btn btn-sm dashboardbutton">Change template</a>
+      <a href="{% url 'export-pdf' person.id %}" class="btn btn-sm dashboardbutton">Download CV</a>
     </div>
 
   </div>
   {% endfor %}
   {%else%}
- <h1>You have not created a cv yet</h1>
-<a href="{%url 'personal' %}">Click here to create</a>
+  <section id=title>
+    <h2>Oops! You haven't created a cv yet!!</h1>
+    <p class="wrapper">
+      <a href="{% url 'personal' %}" class="btn btn-md titlebutton "><strong>Create CV</strong></a>
+    </p>  </section>
+
 {%endif%}
 </div>
 
