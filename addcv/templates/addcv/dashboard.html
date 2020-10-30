@@ -12,7 +12,9 @@
       <a href="{% url 'persondash' person.id %}" class="btn btn-primary btn-sm">Details</a>
       <a href="{% url 'updatepersonal' person.id %}" class="btn btn-warning btn-sm">Update</a>
       <a href="{% url 'deletepersonal' person.id %}" class="btn btn-danger btn-sm">Delete</a>
-      <a href="{% url 'showcv' person.id %}" class="btn btn-primary btn-sm">See CV</a>
+      <a href="{% url 'showmycv' person.id %}" class="btn btn-primary btn-sm">See CV</a>
+      <a href="{% url 'changetemp' person.id %}" class="btn btn-primary btn-sm">Change template</a>
+      <a href="{% url 'export-pdf' person.id %}" class="btn btn-primary btn-sm">Download CV</a>
     </div>
 
   </div>

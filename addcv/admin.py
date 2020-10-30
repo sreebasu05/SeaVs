@@ -7,6 +7,7 @@ admin.site.register(education)
 admin.site.register(experience)
 admin.site.register(projects)
 admin.site.register(skill)
+admin.site.register(temp)
 # admin.site.register(resume)
 
 

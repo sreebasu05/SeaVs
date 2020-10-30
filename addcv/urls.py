@@ -15,6 +15,9 @@ urlpatterns = [
      path('updatepersonal/<int:person_id>', views.updatepersonal,name='updatepersonal'),
      path('deletepersonal/<int:person_id>', views.deletepersonal,name='deletepersonal'),
      path('showcv/<int:person_id>', views.showcv, name='showcv'),
+     path('showmycv/<int:person_id>', views.showmycv, name='showmycv'),
+     path('changetemp/<int:person_id>', views.changetemp, name='changetemp'),
+
 
      path('persondash/<int:person_id>', views.personaldash, name='persondash'),
      path('updateeducation/<int:person_id>/<int:edu_id>', views.updateeducation, name='updateeducation'),
@@ -40,5 +43,5 @@ urlpatterns = [
 
 
    #   path('madecv/',views.cv,name='cv'),                #cv2
-     path('export-pdf/<int:person_id>/<int:my_id>', views.export_pdf, name='export-pdf'),
+     path('export-pdf/<int:person_id>/', views.export_pdf, name='export-pdf'),
  ]
