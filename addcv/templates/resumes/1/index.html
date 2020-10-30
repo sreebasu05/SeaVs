@@ -4,10 +4,6 @@
 <head>
 	<style>
 
-		@page {
-			size: "A4";
-			margin: 2.5cm 1.5cm 3.5cm 1.5cm;
-		}
 		.msg {
 			padding: 10px;
 			background: #222;
@@ -230,9 +226,10 @@
 		.yui-gf div.first {
 			width: 12.3%;
 		}
+	@page {size: A4 portrait; margin: 0;}
 	</style>
 
-	<title>Jonathan Doe | Web Designer, Director | name@yourdomain.com</title>
+	<title>{{person.firstname}} {{person.lastname}}</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 	<meta name="keywords" content="" />
