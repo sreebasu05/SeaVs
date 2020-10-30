@@ -13,10 +13,10 @@
       <br>
       <a href="{% url 'persondash' person.id %}" class="btn btn-sm dashboardbutton">Details</a>
       <a href="{% url 'updatepersonal' person.id %}" class="btn btn-sm dashboardbutton">Update</a>
-
-      <a href="{% url 'deletepersonal' person.id %}" class="btn btn-sm dashboardbutton" >Delete</a>
-
-      <a href="{% url 'showcv' person.id %}" class="btn btn-sm dashboardbutton">See CV</a>
+      <a href="{% url 'deletepersonal' person.id %}" class="btn btn-sm dashboardbutton">Delete</a>
+      <a href="{% url 'showmycv' person.id %}" class="btn btn-sm dashboardbutton">See CV</a>
+      <a href="{% url 'changetemp' person.id %}" class="btn btn-sm dashboardbutton">Change template</a>
+      <a href="{% url 'export-pdf' person.id %}" class="btn btn-sm dashboardbutton">Download CV</a>
     </div>
 
   </div>

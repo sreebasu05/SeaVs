@@ -16,8 +16,8 @@ class person(models.Model):
     pincode=models.IntegerField( null=True)
     phoneno=models.IntegerField( null=True)
     emailid=models.EmailField( null=True)
-    profile=models.TextField(max_length=100, null=True)
-
+    profile = models.TextField(max_length=100, null=True)
+    
     def __str__(self):
         return self.firstname
 
@@ -65,6 +65,11 @@ class skill(models.Model):
 
     def __str__(self):
         return self.skill1
+class temp(models.Model):
+    added_by = models.ForeignKey(person,
+        null=True, blank=True, on_delete=models.CASCADE)
+    temp_id = models.IntegerField(blank=True, null=True)
+    
 
 # class resume(models.Model):
 #     resumename=models.CharField(max_length=40)

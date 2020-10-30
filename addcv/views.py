@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from .forms import personalform, educationform, experienceform, projectform,skillform
-from .models import experience, education, person,projects,skill
+from .models import experience, education, person,projects,skill,temp
 from django.contrib import messages
 from django.template.loader import render_to_string
 from weasyprint import HTML
@@ -18,8 +18,8 @@ def personal(request):
             instance.added_by = request.user
             instance.save()
             person_id = instance.id
-            messages.success(request, 'Your personal details has been added!!')
-            return render(request,'addcv/moredetails.html',{'person_id':person_id})
+            messages.success(request,'Your personal details has been added')
+            return render(request,'addcv/showcv.html',{'person_id':person_id})
     else:
         fm = personalform()
         return render(request, 'form/personal.html', {'form': fm})
@@ -273,12 +273,57 @@ def mycv(request, person_id, my_id):
 def createcv(request):
     return render(request, 'addcv/cv.html')
 
+def templist(request):
+    return render(request,'resumes/templist.html')
+
 
 
 def showcv(request, person_id):
     return render(request, 'addcv/showcv.html', {'person_id': person_id})
 
+def mycv(request, person_id, my_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user, id=person_id)
+    temp_obj = temp.objects.filter(added_by=current_person)
+    if temp_obj.count:
+        temp_obj.delete()
+    temp_obj=temp.objects.create(added_by=current_person,temp_id=my_id)
 
+    return render(request, 'addcv/moredetails.html', {'person_id': person_id})
+
+def showmycv(request, person_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user, id=person_id)
+    temp_obj=temp.objects.get(added_by=current_person)
+    my_id=temp_obj.temp_id
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski = skill.objects.filter(added_by=current_person)
+    if my_id == 1:
+        return render(request, 'resumes/1/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 2:
+        return render(request, 'resumes/2/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 3:
+        return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+
+def changetemp(request, person_id):
+    return render(request, 'addcv/showcv.html', {'person_id': person_id})
+
+
+
+def export_pdf(request, person_id):
+    current_user = request.user
+    current_person = person.objects.get(added_by=current_user, id=person_id)
+    temp_obj=temp.objects.get(added_by=current_person)
+    my_id=temp_obj.temp_id
+    cont = education.objects.filter(added_by=current_person)
+    context = experience.objects.filter(added_by=current_person)
+    pro = projects.objects.filter(added_by=current_person)
+    ski=skill.objects.filter(added_by=current_person)
 
 def export_pdf(request, person_id,my_id):
     current_user = request.user
