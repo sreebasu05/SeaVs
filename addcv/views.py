@@ -2,6 +2,7 @@ from django.shortcuts import render,redirect
 from .forms import personalform, educationform, experienceform, projectform,skillform
 from .models import experience, education, person,projects,skill,temp
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from weasyprint import HTML
 import tempfile
@@ -9,7 +10,9 @@ from django.shortcuts import redirect
 from django.http import HttpResponse
 import datetime
 
+
 ##################### FORM VIEWS ########################
+@login_required
 def personal(request):
     if request.method == 'POST':
         fm = personalform(request.POST)
@@ -68,7 +71,7 @@ def project(request,person_id):
     else:
         fm = projectform()
         return render(request, 'form/project.html', {'form': fm})
-
+@login_required
 def skill_person(request,person_id):
     if request.method == 'POST':
         fm = skillform(request.POST)
@@ -309,6 +312,9 @@ def showmycv(request, person_id):
     if my_id == 3:
         return render(request, 'resumes/3/index.html', {'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 4:
+        return render(request, 'resumes/4/index.html', {'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
 
 def changetemp(request, person_id):
     return render(request, 'resumes/templist.html', {'person_id': person_id})
@@ -339,6 +345,9 @@ def export_pdf(request, person_id):
         'projects': pro, 'person': current_person, 'skills': ski})
     if my_id == 3:
         html_string=render_to_string('resumes/3/index.html',{'educations': cont, 'experiences': context,
+        'projects': pro, 'person': current_person, 'skills': ski})
+    if my_id == 4:
+        html_string=render_to_string('resumes/4/index.html',{'educations': cont, 'experiences': context,
         'projects': pro, 'person': current_person, 'skills': ski})
     # if my_id == 4:
     #     html_string=render_to_string('resumes/2/pdf-output.html',{'educations': cont, 'experiences': context,
