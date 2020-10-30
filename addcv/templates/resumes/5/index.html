@@ -1,0 +1,489 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>{{person.firstname}} {{person.lastname}}</title>
+
+  <!-- Meta -->
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Responsive HTML5 Resume/CV Template for Developers">
+  <meta name="author" content="Xiaoying Riley at 3rd Wave Media">
+  <link rel="shortcut icon" href="favicon.ico">
+  <!-- Google Font -->
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,500,400italic,300italic,300,500italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+  <!-- FontAwesome JS-->
+  <script defer src="{% static 'assets/fontawesome/js/all.min.js'%}"></script>
+  <!-- Global CSS -->
+  <link rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css' %}">
+  <!-- Theme CSS -->
+  <link id="theme-style" rel="stylesheet" href="{% static '3.css'%}">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      color: #545E6C;
+      background: #f5f5f5;
+      font-size: 14px;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+      font-weight: 700;
+    }
+
+    a {
+      color: #35776d;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: #1d423c;
+      -webkit-transition: all 0.4s ease-in-out;
+      -moz-transition: all 0.4s ease-in-out;
+      -ms-transition: all 0.4s ease-in-out;
+      -o-transition: all 0.4s ease-in-out;
+    }
+
+    a:focus {
+      text-decoration: none;
+    }
+
+    p {
+      line-height: 1.5;
+    }
+
+    .wrapper {
+      background: #4CAC9D;
+      max-width: 960px;
+      margin: 0 auto;
+      margin-top: 30px;
+      position: relative;
+      -webkit-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      -moz-box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-wrapper {
+      background: #4CAC9D;
+      position: absolute;
+      right: 0;
+      width: 240px;
+      height: 100%;
+      min-height: 800px;
+      color: #fff;
+    }
+
+    .sidebar-wrapper a {
+      color: #fff;
+    }
+
+    .sidebar-wrapper .profile-container {
+      padding: 30px;
+      background: rgba(0, 0, 0, 0.2);
+      text-align: center;
+      color: #fff;
+    }
+
+    .sidebar-wrapper .name {
+      font-size: 32px;
+      font-weight: 900;
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+
+    .sidebar-wrapper .tagline {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 16px;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .sidebar-wrapper .profile {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-wrapper .contact-list .svg-inline--fa {
+      margin-right: 5px;
+      font-size: 18px;
+      vertical-align: middle;
+    }
+
+    .sidebar-wrapper .contact-list li {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-wrapper .contact-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-wrapper .contact-list .email .svg-inline--fa {
+      font-size: 14px;
+    }
+
+    .sidebar-wrapper .container-block {
+      padding: 30px;
+    }
+
+    .sidebar-wrapper .container-block-title {
+      text-transform: uppercase;
+      font-size: 16px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 15px;
+    }
+
+    .sidebar-wrapper .degree {
+      font-size: 14px;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .sidebar-wrapper .education-container .item {
+      margin-bottom: 15px;
+    }
+
+    .sidebar-wrapper .education-container .item:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-wrapper .education-container .meta {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      margin-bottom: 0px;
+      margin-top: 0;
+      font-size: 14px;
+    }
+
+    .sidebar-wrapper .education-container .time {
+      color: rgba(255, 255, 255, 0.6);
+      font-weight: 500;
+      margin-bottom: 0px;
+    }
+
+    .sidebar-wrapper .languages-container .lang-desc {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .sidebar-wrapper .languages-list {
+      margin-bottom: 0;
+    }
+
+    .sidebar-wrapper .languages-list li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar-wrapper .languages-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .sidebar-wrapper .interests-list {
+      margin-bottom: 0;
+    }
+
+    .sidebar-wrapper .interests-list li {
+      margin-bottom: 10px;
+    }
+
+    .sidebar-wrapper .interests-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .main-wrapper {
+      background: #fff;
+      padding: 60px;
+      padding-right: 300px;
+    }
+
+    .main-wrapper .section-title {
+      text-transform: uppercase;
+      font-size: 20px;
+      font-weight: 500;
+      color: #35776d;
+      position: relative;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+
+    .main-wrapper .section-title .icon-holder {
+      width: 30px;
+      height: 30px;
+      margin-right: 8px;
+      display: inline-block;
+      color: #fff;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
+      border-radius: 50%;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+      background: #35776d;
+      text-align: center;
+      font-size: 16px;
+      position: relative;
+      top: -8px;
+    }
+
+    .main-wrapper .section-title .icon-holder .svg-inline--fa {
+      font-size: 14px;
+      margin-top: 6px;
+    }
+
+    .main-wrapper .section {
+      margin-bottom: 60px;
+    }
+
+    .main-wrapper .experiences-section .item {
+      margin-bottom: 30px;
+    }
+
+    .main-wrapper .upper-row {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2px;
+    }
+
+    .main-wrapper .job-title {
+      color: #3F4650;
+      font-size: 16px;
+      margin-top: 0;
+      margin-bottom: 0;
+      font-weight: 500;
+    }
+
+    .main-wrapper .time {
+      position: absolute;
+      right: 0;
+      top: 0;
+      color: #97AAC3;
+    }
+
+    .main-wrapper .company {
+      margin-bottom: 10px;
+      color: #97AAC3;
+    }
+
+    .main-wrapper .project-title {
+      font-size: 16px;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 5px;
+    }
+
+    .main-wrapper .projects-section .intro {
+      margin-bottom: 30px;
+    }
+
+    .main-wrapper .projects-section .item {
+      margin-bottom: 15px;
+    }
+
+    .skillset .item {
+      margin-bottom: 15px;
+      overflow: hidden;
+    }
+
+    .skillset .level-title {
+      font-size: 14px;
+      margin-top: 0;
+      margin-bottom: 12px;
+    }
+
+    .skillset .level-bar {
+      height: 12px;
+      background: #f5f5f5;
+      -webkit-border-radius: 2px;
+      -moz-border-radius: 2px;
+      -ms-border-radius: 2px;
+      -o-border-radius: 2px;
+      border-radius: 2px;
+      -moz-background-clip: padding;
+      -webkit-background-clip: padding-box;
+      background-clip: padding-box;
+    }
+
+    .skillset .theme-progress-bar {
+      background: #6dbeb2;
+    }
+
+    .footer {
+      padding: 30px;
+      padding-top: 60px;
+    }
+
+    .footer .copyright {
+      line-height: 1.6;
+      color: #545E6C;
+      font-size: 13px;
+    }
+
+    .footer .fa-heart {
+      color: #fb866a;
+    }
+
+    @media (max-width: 767.98px) {
+      .sidebar-wrapper {
+        position: static;
+        width: inherit;
+      }
+      .main-wrapper {
+        padding: 30px;
+      }
+      .main-wrapper .time {
+        position: static;
+        display: block;
+        margin-top: 5px;
+      }
+      .main-wrapper .upper-row {
+        margin-bottom: 0;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .skillset .level-title {
+        display: inline-block;
+        float: left;
+        width: 30%;
+        margin-bottom: 0;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="sidebar-wrapper">
+      <div class="profile-container">
+        <img class="profile" src="assets/images/profile.png" alt="" />
+        <h1 class="name">{{person.firstname}} {{person.lastname}}</h1>
+        <h3 class="tagline">{{person.profession}} | {{person.title}}</h3>
+      </div>
+      <!--//profile-container-->
+
+      <div class="contact-container container-block">
+        <ul class="list-unstyled contact-list">
+          <li class="email"><i class="fas fa-envelope"></i><a href="mailto: {{person.emailid}}">{{person.emailid}}</a></li>
+          <li class="phone"><i class="fas fa-phone"></i><a href="tel:{{person.phoneno}}">{{person.phoneno}}</a></li>
+          <!-- <li class="website"><i class="fas fa-globe"></i><a href="https://themes.3rdwavemedia.com/bootstrap-templates/resume/orbit-free-resume-cv-bootstrap-theme-for-developers/" target="_blank">portfoliosite.com</a></li>
+                    <li class="linkedin"><i class="fab fa-linkedin-in"></i><a href="#" target="_blank">linkedin.com/in/alandoe</a></li>
+                    <li class="github"><i class="fab fa-github"></i><a href="#" target="_blank">github.com/username</a></li>
+                    <li class="twitter"><i class="fab fa-twitter"></i><a href="https://twitter.com/3rdwave_themes" target="_blank">@twittername</a></li> -->
+        </ul>
+      </div>
+      <!--//contact-container-->
+      {% if educations.count %}
+      <div class="education-container container-block">
+        <h2 class="container-block-title">Education</h2>
+        {% for education in educations%}
+        <div class="item">
+          <h4 class="degree">{{education.course}}</h4>
+          <h5 class="meta">{{education.institute}}</h5>
+          <div class="time">{{education.startingyear}} - {{education.endingyear}}</div>
+        </div>
+        <!--//item-->
+        {%endfor%}
+      </div>
+      {%endif%}
+      <!--//education-container-->
+
+      <!-- <div class="languages-container container-block">
+                <h2 class="container-block-title">Languages</h2>
+                <ul class="list-unstyled interests-list">
+                    <li>English <span class="lang-desc">(Native)</span></li>
+                    <li>French <span class="lang-desc">(Professional)</span></li>
+                    <li>Spanish <span class="lang-desc">(Professional)</span></li>
+                </ul>
+            </div><!//interests-->
+
+
+
+    </div>
+    <!--//sidebar-wrapper--> -->
+
+    <div class="main-wrapper">
+
+      <section class="section summary-section">
+        <h2 class="section-title"><span class="icon-holder"><i class="fas fa-user"></i></span>Career Profile</h2>
+        <div class="summary">
+          <p>{{person.profile}}</p>
+        </div>
+        <!--//summary-->
+      </section>
+      <!--//section-->
+      {% if experiences.count %}
+      <section class="section experiences-section">
+        <h2 class="section-title"><span class="icon-holder"><i class="fas fa-briefcase"></i></span>Experiences</h2>
+        {%for experience in experiences%}
+        <div class="item">
+          <div class="meta">
+            <div class="upper-row">
+              <h3 class="job-title">{{experience.post}}</h3>
+              <div class="time">{{experience.startingyear}}- {{experience.endingyear}}</div>
+            </div>
+            <!--//upper-row-->
+            <div class="company">{{experience.companyname}}</div>
+          </div>
+          <!--//meta-->
+          <div class="details">
+            <p>{{experience.details}}</p>
+          </div>
+          <!--//details-->
+        </div>
+        <!--//item-->
+        {%endfor%}
+      </section>
+      <!--//section-->
+      {%endif%}
+      {%if projects.count%}
+      <section class="section projects-section">
+        <h2 class="section-title"><span class="icon-holder"><i class="fas fa-archive"></i></span>Projects</h2>
+        {%for project in projects%}
+        <div class="item">
+          <span class="project-title">{{project.topic}}</span> - <span class="project-tagline">{{project.details}} </span>
+
+        </div>
+        <!--//item-->
+        {%endfor%}
+      </section>
+      {%endif%}
+      <!--//section-->
+      {%if skills.count%}
+      <section class="skills-section section">
+        <h2 class="section-title"><span class="icon-holder"><i class="fas fa-rocket"></i></span>Skills &amp; Proficiency</h2>
+        {%for skill in skills%}
+        <div class="skillset">
+          <div class="item">
+            <h3 class="level-title">{{skill.skill1}}</h3>
+          </div>
+          <!--//item-->
+
+          <div class="item">
+            <h3 class="level-title">{{skill.skill2}}</h3>
+          </div>
+          <!--//item-->
+
+          <div class="item">
+            <h3 class="level-title">{{skill.skill3}}</h3>
+          </div>
+        </div>
+        <!--//item-->
+      </section>
+    </div>
+    {%endfor%}
+
+    {%endif%}
+    <!--//skills-section-->
+
+  </div>
+  <!--//main-body-->
+  </div>
+
+</body>
+
+</html>

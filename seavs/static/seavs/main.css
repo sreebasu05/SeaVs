@@ -2,17 +2,18 @@ body {
   background-color: #006a71;
   margin-bottom: 20px;
 }
-p{
+
+p {
   color: #e8e8e8;
   margin-bottom: 25px;
 }
+
 h5 {
   color: #006a71;
 }
-h2{
+
+h2 {
   color: #e8e8e8;
-
-
 }
 
 .spacer {
@@ -25,7 +26,6 @@ h2{
 }
 
 #navigationbar {
-
   background-color: #006a71;
   color: #e8e8e8;
   /* color: #40514e */
@@ -67,26 +67,26 @@ h2{
   color: #006a71;
   opacity: 1;
 }
+
 .titlebutton:hover {
   align-items: center;
   opacity: 0.6;
 }
-
 
 .wrapper {
   text-align: center;
 }
 
 #features {
-
   padding-top: 20px;
-
   background-color: #e8e8e8;
   color: #006a71;
 }
+
 .featurette-heading, .lead {
   color: #006a71;
 }
+
 .feature-box {
   text-align: center;
   padding: 5%
@@ -145,20 +145,19 @@ h2{
 
 .card-body {
   background-color: #e8e8e8;
-
 }
-
 
 .list-group-item {
   margin-bottom: 1rem;
   background-color: #e8e8e8;
   color: #006a71;
 }
+
 .alert {
   background-color: #e8e8e8;
-  font-size: 1.5rem;
-
+  font-size: 1rem;
 }
+
 .dashboardbutton {
   align-items: center;
   background-color: #e8e8e8;
@@ -171,7 +170,7 @@ h2{
   opacity: 0.5;
 }
 
-.card-text{
+.card-text {
   color: #000;
   margin-bottom: 3px;
 }
@@ -185,4 +184,8 @@ h2{
 .templatebutton {
   background-color: #006a71;
   color: #e8e8e8;
+}
+
+.blockquote{
+  background-color: #fff;
 }

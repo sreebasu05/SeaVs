@@ -8,14 +8,14 @@
 
 
   <div class="container-fluid">
-    <h1 class="heading">Welcome to Sea-Vs</h1>
+    <h1 class="heading" style="font-family: 'Lobster', cursive;">Welcome to Sea-Vs</h1>
     <p class="titlepara">
       Hello {%if user.is_authenticated%}
       {{user.username}},
       {%else%}
       mate,
       {%endif%}
-      use Sea-Vs and make yourself an awesome resume for your next interview.
+      use Sea-Vs and make yourself a resume for your next interview. Let's get going!
 
     </p>
     <p class="wrapper">
@@ -33,13 +33,12 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">Create your CV. <span class="text-muted">It’ll blow your mind.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">Create your CV.</h2>
+        <p class="lead">It's never been this easy. Just enter your details and get yourself a CV.</p>
       </div>
       <div class="col-md-5">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{%static 'feature1.png'%}"
-          aria-label="Placeholder: 500x500">
-          <title>Placeholder</title>
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{%static 'feature1.png'%}" aria-label="Placeholder: 500x500">
+        <title>Placeholder</title>
 
       </div>
     </div>
@@ -48,12 +47,12 @@
 
     <div class="row featurette">
       <div class="col-md-7 order-md-2">
-        <h2 class="featurette-heading">Store your templates. <span class="text-muted">See for yourself.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">Store your templates.</h2>
+        <p class="lead">You can store your templates for future use and can update, delete and do it for many different CVs.</p>
       </div>
       <div class="col-md-5 order-md-1">
-        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{%static 'feature2.png'%}"
-          aria-label="Placeholder: 500x500">          <title>Placeholder</title>
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{%static 'feature2.png'%}" aria-label="Placeholder: 500x500">
+        <title>Placeholder</title>
 
       </div>
     </div>
@@ -62,15 +61,11 @@
 
     <div class="row featurette">
       <div class="col-md-7">
-        <h2 class="featurette-heading">And lastly, get templates. <span class="text-muted">Checkmate.</span></h2>
-        <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p>
+        <h2 class="featurette-heading">And lastly, get templates.</h2>
+        <p class="lead">Ya! You can choose from the various templates we provide.</p>
       </div>
       <div class="col-md-5">
-        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img"
-          aria-label="Placeholder: 500x500">
-          <title>Placeholder</title>
-          <rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text>
-        </svg>
+        <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" src="{%static 'feature3.png'%}" aria-label="Placeholder: 500x500">
       </div>
     </div>
 
@@ -82,4 +77,4 @@
 
 
 
-  {% endblock content %}
+{% endblock content %}

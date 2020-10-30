@@ -7,10 +7,10 @@ class person(models.Model):
     User = settings.AUTH_USER_MODEL
     added_by = models.ForeignKey(User,
         null=True, blank=True, on_delete=models.CASCADE)
-    firstname=models.CharField(max_length=20, null=True)
-    lastname=models.CharField(max_length=20, null=True)
-    profession=models.CharField(max_length=20, null=True)
-    title=models.CharField(max_length=20, null=True)
+    firstname=models.CharField(max_length=50)
+    lastname=models.CharField(max_length=50)
+    profession=models.CharField(max_length=50)
+    title=models.CharField(max_length=80, null=True)
     city=models.CharField(max_length=30, null=True)
     state=models.CharField(max_length=30, null=True)
     pincode=models.IntegerField( null=True)
@@ -24,11 +24,11 @@ class person(models.Model):
 class education(models.Model):
     added_by = models.ForeignKey(person,
         null=True, blank=True, on_delete=models.CASCADE)
-    institute=models.CharField(max_length=40)
-    startingyear=models.IntegerField()
-    endingyear=models.IntegerField()
-    grade=models.CharField(max_length=4)
-    course=models.CharField(max_length=20)
+    institute=models.CharField(max_length=100)
+    startingyear=models.IntegerField(null=True)
+    endingyear=models.IntegerField(null=True)
+    grade=models.CharField(max_length=30, null=True)
+    course=models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.institute
@@ -37,10 +37,10 @@ class experience(models.Model):
     added_by = models.ForeignKey(person,
         null=True, blank=True, on_delete=models.CASCADE)
     company=models.CharField(max_length=40)
-    startingyear=models.IntegerField()
-    endingyear=models.IntegerField()
-    post=models.CharField(max_length=20)
-    details=models.TextField(max_length=200)
+    startingyear=models.IntegerField(null=True)
+    endingyear=models.IntegerField(null=True)
+    post=models.CharField(max_length=50,null=True)
+    details=models.TextField(max_length=200,null=True)
 
     def __str__(self):
         return self.company
@@ -48,10 +48,10 @@ class experience(models.Model):
 class projects(models.Model):
     added_by = models.ForeignKey(person,
         null=True, blank=True, on_delete=models.CASCADE)
-    topic=models.CharField(max_length=40)
-    startingyear=models.IntegerField()
-    endingyear=models.IntegerField()
-    details=models.TextField(max_length=200)
+    topic=models.CharField(max_length=80)
+    startingyear=models.IntegerField(null=True)
+    endingyear=models.IntegerField(null=True)
+    details=models.TextField(max_length=300, null=True)
 
     def __str__(self):
         return self.topic

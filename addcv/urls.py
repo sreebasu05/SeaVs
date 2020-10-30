@@ -14,7 +14,6 @@ urlpatterns = [
      path('userdash/', views.dashboard,name='dashboard'),
      path('updatepersonal/<int:person_id>', views.updatepersonal,name='updatepersonal'),
      path('deletepersonal/<int:person_id>', views.deletepersonal,name='deletepersonal'),
-     path('showcv/<int:person_id>', views.showcv, name='showcv'),
      path('showmycv/<int:person_id>', views.showmycv, name='showmycv'),
      path('changetemp/<int:person_id>', views.changetemp, name='changetemp'),
 
@@ -32,17 +31,6 @@ urlpatterns = [
 
      ##################### CV CREATION ########################
      path('templist', views.templist, name='templist'),
-      path('mycv/<int:person_id>/<int:my_id>', views.mycv, name='mycv'),
-
-     #############################################-old
-
-
-
-     path('',views.createcv, name='create-cv-page'),    #createcv page
-
-
-
-
-   #   path('madecv/',views.cv,name='cv'),                #cv2
+     path('mycv/<int:person_id>/<int:my_id>', views.mycv, name='mycv'),
      path('export-pdf/<int:person_id>/', views.export_pdf, name='export-pdf'),
  ]

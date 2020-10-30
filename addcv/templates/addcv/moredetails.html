@@ -3,11 +3,7 @@
 {% block content %}
 
 <div class="container-fluid list-group">
-  {% for message in messages %}
-  <div class="alert alert-{{ message.tags }}" role="alert">
-    <p><strong>{{message}}</strong></p>
-  </div>
-  {% endfor %}
+
   <a href="{% url 'ed' person_id %}" class="list-group-item list-group-item-action">Add Education Details</a>
   <a href="{% url 'ex' person_id %}" class="list-group-item list-group-item-action">Add Job Details</a>
   <a href="{% url 'project' person_id %}" class="list-group-item list-group-item-action">Add Project Details</a>
