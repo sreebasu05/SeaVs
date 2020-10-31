@@ -14,7 +14,7 @@
     <section id="navigationbar">
 
       <div class="container-fluid">
-        <nav class="navbar navbar-expand-md fixed-top container-fluid" style="padding-top: 20px !important; padding-bottom: 10px !important; background-color: #006a71; color: #e8e8e8;">
+        <nav class="navbar navbar-expand-md fixed-top container-fluid navbar-dark" style="padding-top: 20px !important; padding-bottom: 10px !important; background-color: #006a71; color: #e8e8e8;">
           <img src="{% static 'seavs/logo.png'%}" alt="" height="35px">
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +47,7 @@
               </li>
               {% endif %}
               <li class="nav-item">
-                <a class="nav-link" href="/contact" style="color: #fff">Contact Us</a>
+                <a class="nav-link" href="{%url 'contactus'%}" style="color: #fff">Contact Us</a>
               </li>
             </ul>
           </div>
