@@ -33,4 +33,5 @@ urlpatterns = [
      path('templist', views.templist, name='templist'),
      path('mycv/<int:person_id>/<int:my_id>', views.mycv, name='mycv'),
      path('export-pdf/<int:person_id>/', views.export_pdf, name='export-pdf'),
+     path('preview/<int:person_id>/<int:my_id>', views.preview, name='preview'),
  ]

@@ -1,0 +1,25 @@
+{% extends 'seavs/base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid">
+  {% ifequal id 1 %}
+  <img src="{% static 'resume 1.png' %}" alt="" width="1000px" width="1000px">
+  {% endifequal %}
+  {% ifequal id 2 %}
+  <img src="{% static 'resume 2.png' %}" alt="" width="1000px" width="1000px">
+  {% endifequal %}
+  {% ifequal id 3 %}
+  <img src="{% static 'resume 3.png' %}" alt="" width="1000px" width="1000px">
+  {% endifequal %}
+  {% ifequal id 4 %}
+  <img src="{% static 'resume 4.png' %}" alt="" width="1000px" width="1000px">
+  {% endifequal %}
+  {% ifequal id 5 %}
+  <img src="{% static 'resume 5.png' %}" alt="" width="1000px" width="1000px">
+  {% endifequal %}
+  {% ifequal id 6 %}
+  <img src="{% static 'resume 6.png' %}" alt="" width="1000px" width="1000px">
+  {% endifequal %}
+</div>
+{% endblock content%}

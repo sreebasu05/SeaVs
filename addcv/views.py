@@ -366,3 +366,18 @@ def export_pdf(request, person_id):
 
 
     return response
+
+def preview (request, person_id, my_id):
+    if my_id == 1:
+        print(my_id)
+        return render(request, 'addcv/preview.html',{'id':1})
+    if my_id == 2:
+        return render(request, 'addcv/preview.html',{'id':2})
+    if my_id == 3:
+        return render(request, 'addcv/preview.html',{'id':3})
+    if my_id == 4:
+        return render(request, 'addcv/preview.html',{'id':4})
+    if my_id == 5:
+        return render(request, 'addcv/preview.html',{'id':5})
+    if my_id == 6:
+        return render(request, 'addcv/preview.html',{'id':6})
