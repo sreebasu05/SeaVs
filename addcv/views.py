@@ -277,9 +277,8 @@ def mycv(request, person_id, my_id):
     current_person = person.objects.get(added_by=current_user, id=person_id)
     temp_obj = temp.objects.filter(added_by=current_person)
     if temp_obj.count:
-        temp_obj.delete()
+        temp_obj.delete()     
     temp_obj=temp.objects.create(added_by=current_person,temp_id=my_id)
-
     return render(request, 'addcv/moredetails.html', {'person_id': person_id})
 
 @login_required(login_url='/login/')
