@@ -168,7 +168,7 @@ def deleteeducation(request, person_id, edu_id):
         context = experience.objects.filter(added_by=current_person)
         pro = projects.objects.filter(added_by=current_person)
         ski = skill.objects.filter(added_by=current_person)
-    return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
+        return render(request, 'addcv/persondashboard.html', {'contents': cont, 'experiences': context,
         'projects':pro,'person_id':person_id,'skills':ski})
     return render(request, 'addcv/deleteeducation.html')
 
@@ -277,7 +277,7 @@ def mycv(request, person_id, my_id):
     current_person = person.objects.get(added_by=current_user, id=person_id)
     temp_obj = temp.objects.filter(added_by=current_person)
     if temp_obj.count:
-        temp_obj.delete()     
+        temp_obj.delete()
     temp_obj=temp.objects.create(added_by=current_person,temp_id=my_id)
     return render(request, 'addcv/moredetails.html', {'person_id': person_id})
 
