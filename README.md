@@ -4,7 +4,7 @@
 
 # Installation
 
-$ git clone https://github.com/erinallard/instagram_miner.git <br>
+$ git clone https://github.com/sreebasu05/Seavs <br>
 $ cd Seavs <br>
 Seavs $ pip install -r requirements.txt <br>
 Seavs $ python manage.py makemigrations <br>
