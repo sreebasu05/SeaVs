@@ -3,11 +3,29 @@
 
 <head>
 	<style>
-
-		@page {
-			size: "A4";
-			margin: 2.5cm 1.5cm 3.5cm 1.5cm;
+		body {
+			background: rgb(204, 204, 204);
 		}
+
+		page[size="A4"] {
+			background: white;
+			width: 21cm;
+			height: 29.7cm;
+			display: block;
+			margin: 0 auto;
+			margin-bottom: 0.5cm;
+			box-shadow: 0 0 0.5cm rgba(0, 0, 0, 0.5);
+		}
+
+		@media print {
+
+			body,
+			page[size="A4"] {
+				margin: 0;
+				box-shadow: 0;
+			}
+		}
+
 		.msg {
 			padding: 10px;
 			background: #222;
@@ -232,7 +250,7 @@
 		}
 	</style>
 
-	<title>Jonathan Doe | Web Designer, Director | name@yourdomain.com</title>
+	<title>{{person.firstname}} {{person.lastname}}</title>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
 
 	<meta name="keywords" content="" />
@@ -243,140 +261,140 @@
 
 </head>
 
-<body>
+<body contenteditable="true">
+	<page size="A4">
+		<div id="doc2" class="yui-t7">
+			<div id="inner">
 
-	<div id="doc2" class="yui-t7">
-		<div id="inner">
-
-			<div id="hd">
-				<div class="yui-gc">
-					<div class="yui-u first">
-						<h1>{{person.firstname}} {{person.lastname}}</h1>
-						<h2>{{person.profession}}, {{person.title}}</h2>
-					</div>
-
-					<div class="yui-u">
-						<div class="contact-info">
-
-							<h3><a href="mailto:name@yourdomain.com">{{person.emailid}}</a></h3>
-							<h3>{{person.phoneno}}</h3>
-							<h3>{{person.city}} {{person.state}}</h3>
-							<h3>{{person.pincode}}</h3>
+				<div id="hd">
+					<div class="yui-gc">
+						<div class="yui-u first">
+							<h1>{{person.firstname}} {{person.lastname}}</h1>
+							<h2>{{person.profession}}, {{person.title}}</h2>
 						</div>
-						<!--// .contact-info -->
+
+						<div class="yui-u">
+							<div class="contact-info">
+
+								<h3><a href="mailto:name@yourdomain.com">{{person.emailid}}</a></h3>
+								<h3>{{person.phoneno}}</h3>
+								<h3>{{person.city}} {{person.state}}</h3>
+								<h3>{{person.pincode}}</h3>
+							</div>
+							<!--// .contact-info -->
+						</div>
 					</div>
+					<!--// .yui-gc -->
 				</div>
-				<!--// .yui-gc -->
-			</div>
-			<!--// hd -->
+				<!--// hd -->
 
-			<div id="bd">
-				<div id="yui-main">
-					<div class="yui-b">
+				<div id="bd">
+					<div id="yui-main">
+						<div class="yui-b">
 
-						<div class="yui-gf">
-							<div class="yui-u first">
-								<h2><strong>Profile</strong></h2>
-							</div>
-							<div class="yui-u">
-								<p class="enlarge">
-									{{person.profile}}
-								</p>
-							</div>
-						</div>
-						<!--// .yui-gf -->
-						{% if skills.count %}
-						<div class="yui-gf">
-							<div class="yui-u first">
-								<h2><strong>Skills</strong></h2>
-							</div>
-							{% for skill in skills%}
-							<div class="yui-u">
-
-								<div class="talent">
-									<h2>{{skill.skill1}}</h2>
+							<div class="yui-gf">
+								<div class="yui-u first">
+									<h2><strong>Profile</strong></h2>
 								</div>
-
-								<div class="talent">
-									<h2>{{skill.skill3}}</h2>
-								</div>
-
-								<div class="talent">
-									<h2>{{skill.skill2}}</h2>
+								<div class="yui-u">
+									<p class="enlarge">
+										{{person.profile}}
+									</p>
 								</div>
 							</div>
-							{%endfor%}
-						</div>
-						<!--// .yui-gf -->
-						{% endif %}
-						{% if experiences.count %}
-						<div class="yui-gf">
-
-							<div class="yui-u first">
-								<h2><strong>Experience</strong></h2>
-							</div>
-							<!--// .yui-u -->
-
-							<div class="yui-u">
-							{%for experience in experiences%}
-								<div class="job">
-									<h2><strong>{{experience.company}}</strong></h2>
-									<h3>{{experience.post}}</h3>
-									<h4>{{experience.startingyear}}-{{experience.endingyear}}</h4>
-									<p>{{experience.details}}</p>
+							<!--// .yui-gf -->
+							{% if skills.count %}
+							<div class="yui-gf">
+								<div class="yui-u first">
+									<h2><strong>Skills</strong></h2>
 								</div>
-							{%endfor%}
+								{% for skill in skills%}
+								<div class="yui-u">
+
+									<div class="talent">
+										<h2>{{skill.skill1}}</h2>
+									</div>
+
+									<div class="talent">
+										<h2>{{skill.skill3}}</h2>
+									</div>
+
+									<div class="talent">
+										<h2>{{skill.skill2}}</h2>
+									</div>
+								</div>
+								{%endfor%}
 							</div>
-							<!--// .yui-u -->
+							<!--// .yui-gf -->
+							{% endif %}
+							{% if experiences.count %}
+							<div class="yui-gf">
+
+								<div class="yui-u first">
+									<h2><strong>Experience</strong></h2>
+								</div>
+								<!--// .yui-u -->
+
+								<div class="yui-u">
+									{%for experience in experiences%}
+									<div class="job">
+										<h2><strong>{{experience.company}}</strong></h2>
+										<h3>{{experience.post}}</h3>
+										<h4>{{experience.startingyear}}-{{experience.endingyear}}</h4>
+										<p>{{experience.details}}</p>
+									</div>
+									{%endfor%}
+								</div>
+								<!--// .yui-u -->
+							</div>
+							<!--// .yui-gf -->
+							{% endif %}
+							{% if educations.count %}
+							<div class="yui-gf ">
+								<div class="yui-u first">
+									<h2>Education</h2>
+								</div>
+								{%for education in educations%}
+								<div class="yui-u">
+									<h2>{{education.institute}}a</h2>
+									<h3>{{education.course}} &mdash; <strong>{{education.grade}}</strong> </h3>
+									<h4>{{education.startingyear}}-{{education.endingyear}}</h4>
+								</div>
+								{%endfor%}
+							</div>
+							<!--// .yui-gf -->
+							{%endif%}
+							{% if projects.count %}
+							<div class="yui-gf last">
+								<div class="yui-u first">
+									<h2>Project</h2>
+								</div>
+								{%for project in projects%}
+								<div class="yui-u">
+									<h2>{{project.topic}} </h2>
+									<h4>{{project.startingyear}}-{{project.endingyear}}</h4>
+									<p>{{project.details}}</p>
+								</div>
+								{%endfor%}
+							</div>
+							{%endif%}
 						</div>
-						<!--// .yui-gf -->
-						{% endif %}
-						{% if educations.count %}
-						<div class="yui-gf ">
-							<div class="yui-u first">
-								<h2>Education</h2>
-							</div>
-							{%for education in educations%}
-							<div class="yui-u">
-								<h2>{{education.institute}} - Bloomington, Indiana</h2>
-								<h3>{{education.course}} &mdash; <strong>{{education.grade}}</strong> </h3>
-								<h4>{{education.startingyear}}-{{education.endingyear}}</h4>
-							</div>
-							{%endfor%}
-						</div>
-						<!--// .yui-gf -->
-						{%endif%}
-						{% if projects.count %}
-						<div class="yui-gf last">
-							<div class="yui-u first">
-								<h2>Project</h2>
-							</div>
-							{%for project in projects%}
-							<div class="yui-u">
-								<h2>{{project.topic}} </h2>
-								<h4>{{education.startingyear}}-{{education.endingyear}}</h4>
-								<p>{{project.details}}</p>
-							</div>
-							{%endfor%}
-						</div>
-						{%endif%}
+						<!--// .yui-b -->
 					</div>
-					<!--// .yui-b -->
+					<!--// yui-main -->
 				</div>
-				<!--// yui-main -->
-			</div>
-			<!--// bd -->
+				<!--// bd -->
 
-			<div id="ft">
-				<p>{{person.firstname}} {{person.lastname}} &mdash; <a href="mailto:{{person.email}}">{{person.emailid}}</a> &mdash; {{person.phoneno}}</p>
-			</div>
-			<!--// footer -->
+				<div id="ft">
+					<p>{{person.firstname}} {{person.lastname}} &mdash; <a href="mailto:{{person.email}}">{{person.emailid}}</a> &mdash; {{person.phoneno}}</p>
+				</div>
+				<!--// footer -->
 
-		</div><!-- // inner -->
+			</div><!-- // inner -->
 
 
-	</div>
-
+		</div>
+	</page>
 
 </body>
 
