@@ -1,4 +1,4 @@
-## Sea-Vs
+
 <h1 align="center"><i>Sea-Vs</i></h1>
 
 Every year during internship and placement season there's lot of fuss about building an
