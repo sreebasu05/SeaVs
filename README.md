@@ -35,4 +35,6 @@ should also offer tools to build our own template.
 
 
 # <a name="images"></a>Images
-![alt text](https://github.com/sreebasu05/Seavs/blob/master/addcv/static/frontpage.png)
+![alt text](https://github.com/sreebasu05/Seavs/blob/master/addcv/static/frontpage.png) <br><br>
+![alt text](https://github.com/sreebasu05/Seavs/blob/master/addcv/static/feature2.png)<br><br>
+![alt text](https://github.com/sreebasu05/Seavs/blob/master/addcv/static/feature3.png)<br><br>
